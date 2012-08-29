@@ -1,11 +1,11 @@
 % autosam.tex
 % Annotated sample file for the preparation of LaTeX files
-% for the final versions of papers submitted to or accepted for 
+% for the final versions of papers submitted to or accepted for
 % publication in AUTOMATICA.
 
 % See also the Information for Authors.
 
-% Make sure that the zip file that you send contains all the 
+% Make sure that the zip file that you send contains all the
 % files, including the files for the figures and the bib file.
 
 % Output produced with the elsart style file does not imitate the
@@ -14,16 +14,16 @@
 % final document is produced from the source file in the
 % AUTOMATICA style at Elsevier.
 
-% You may use the style file autart.cls to obtain a two-column 
-% document (see below) that more or less imitates the printed 
-% Automatica style. This may helpful to improve the formatting 
-% of the equations, tables and figures, and also serves to check 
+% You may use the style file autart.cls to obtain a two-column
+% document (see below) that more or less imitates the printed
+% Automatica style. This may helpful to improve the formatting
+% of the equations, tables and figures, and also serves to check
 % whether the paper satisfies the length requirements.
 
 % Please note: Authors must not create their own macros.
 
-% For further information regarding the preparation of LaTeX files 
-% for Elsevier, please refer to the "Full Instructions to Authors" 
+% For further information regarding the preparation of LaTeX files
+% for Elsevier, please refer to the "Full Instructions to Authors"
 % from Elsevier's anonymous ftp server on ftp.elsevier.nl in the
 % directory pub/styles, or from the internet (CTAN sites) on
 % ftp.shsu.edu, ftp.dante.de and ftp.tex.ac.uk in the directory
@@ -32,8 +32,8 @@
 
 %\documentclass{elsart}               % The use of LaTeX2e is preferred.
 
-\documentclass[twocolumn]{autart}    % Enable this line and disable the 
-                                     % preceding line to obtain a two-column 
+\documentclass[twocolumn]{autart}    % Enable this line and disable the
+                                     % preceding line to obtain a two-column
                                      % document whose style resembles the
                                      % printed Automatica style.
 
@@ -41,7 +41,7 @@
 \newcommand{\comment}[1]{\textcolor{red}{\textbf{[#1]}}}
 
 \usepackage{amsmath,amsfonts}
-\usepackage{graphicx}          % Include this line if your 
+\usepackage{graphicx}          % Include this line if your
                                % document contains figures,
 %\usepackage[dvips]{epsfig}    % or this line, depending on which
                                % you prefer.
@@ -51,42 +51,42 @@
 \begin{document}
 
 \begin{frontmatter}
-%\runtitle{Insert a suggested running title}  % Running title for regular 
-                                              % papers but only if the title  
-                                              % is over 5 words. Running title 
+%\runtitle{Insert a suggested running title}  % Running title for regular
+                                              % papers but only if the title
+                                              % is over 5 words. Running title
                                               % is not shown in output.
 
-%\title{In Catilinam IV\thanksref{footnoteinfo}} % Title, preferably not more 
+%\title{In Catilinam IV\thanksref{footnoteinfo}} % Title, preferably not more
                                                 % than 10 words.
 
-%\thanks[footnoteinfo]{This paper was not presented at any IFAC 
-%meeting. Corresponding author M.~T.~Cicero. Tel. +XXXIX-VI-mmmxxi. 
+%\thanks[footnoteinfo]{This paper was not presented at any IFAC
+%meeting. Corresponding author M.~T.~Cicero. Tel. +XXXIX-VI-mmmxxi.
 %Fax +XXXIX-VI-mmmxxv.}
 
-%\author[Paestum]{Marcus Tullius Cicero}\ead{cicero@senate.ir},    % Add the 
-%\author[Rome]{Julius Caesar}\ead{julius@caesar.ir},               % e-mail address 
+%\author[Paestum]{Marcus Tullius Cicero}\ead{cicero@senate.ir},    % Add the
+%\author[Rome]{Julius Caesar}\ead{julius@caesar.ir},               % e-mail address
 %\author[Baiae]{Publius Maro Vergilius}\ead{vergilius@culture.ir}  % (ead) as shown
 
-%\address[Paestum]{Buckingham Palace, Paestum}  % Please supply                                              
+%\address[Paestum]{Buckingham Palace, Paestum}  % Please supply
 %\address[Rome]{Senate House, Rome}             % full addresses
 %\address[Baiae]{The White House, Baiae}        % here.
 
-          
-%\begin{keyword}                           % Five to ten keywords,  
-%Cicero; Catiline; orations.               % chosen from the IFAC 
-%\end{keyword}                             % keyword list or with the 
-                                          % help of the Automatica 
+
+%\begin{keyword}                           % Five to ten keywords,
+%Cicero; Catiline; orations.               % chosen from the IFAC
+%\end{keyword}                             % keyword list or with the
+                                          % help of the Automatica
                                           % keyword wizard
 
-\title{Rao-Blackwellized Particle Smoothing for
+\title{Rao-Blackwellised Particle Smoothing for
 Conditionally Linear Gaussian Models}
 
 %\thanksref{footnoteinfo}
 %\thanks[footnoteinfo]{This work was supported in part by the XXX.}
 
-\author[First]{Simo S\"arkk\"a} 
-\author[Second]{Pete Bunch} 
-\author[Third]{Simon J. Godsill} 
+\author[First]{Simo S\"arkk\"a}
+\author[Second]{Pete Bunch}
+\author[Third]{Simon J. Godsill}
 
 \address[First]{Aalto University, P.O. Box
   12200. FI-00076 AALTO, Finland. (Tel: +358 50 512 4393; e-mail: simo.sarkka@aalto.fi)}
@@ -108,7 +108,7 @@ Abstract is here.
 \section{Introduction}
 %
 \comment{Something about particle filtering and its efficiency as well as
-motivation of Rao-Blackwellization}
+motivation of Rao-Blackwellisation}
 
 \comment{Comment something about the conference article
   \cite{Sarkka+Bunch+Godsill:2012}}
@@ -119,49 +119,35 @@ The structure of the paper is as follows: \ldots
 
 %\begin{figure}
 %\begin{center}
-%\includegraphics[height=4cm]{jcaesar.eps}    % The printed column  
+%\includegraphics[height=4cm]{jcaesar.eps}    % The printed column
 %\caption{Gaius Julius Caesar, 100--44 B.C.}  % width is 8.4 cm.
-%\label{fig1}                                 % Size the figures 
+%\label{fig1}                                 % Size the figures
 %\end{center}                                 % accordingly.
 %\end{figure}
 
 \subsection{Problem Formulation}
 %
-This paper is considered with Rao-Blackwellized particle smoothing
-of conditionally linear Gaussian models
-(see \cite{Doucet+Godsill+Andrieu:2000}) of the form
+\comment{I think we should maybe put the Bayesian Filtering and Smoothing section before the Problem Formulation}
+%
+This paper is concerned with Rao-Blackwellised particle smoothing of conditionally linear Gaussian hidden Markov models
+(see \cite{Doucet+Godsill+Andrieu:2000}) of the form,
 %
 \begin{equation}
 \begin{split}
   u_k &\sim p(u_k \, \,|\, \, u_{k-1}) \\
-  z_k &= A(u_{k-1}) \, z_{k-1} + q_{k-1} \\
+  z_k &= A(u_{k}) \, z_{k-1} + q_{k} \\
   y_k &= H(u_k) \, z_{k} + r_{k},
 \end{split}
 \label{eq:condgauss}
 \end{equation}
 %
-where $y_k$ for $k=1,\ldots,M$ are the measurements and the state
-consists of two parts $x_k = (u_k,z_k)$, where $z_k \in
-\mathbb{R}^{n_z}$ is conditionally Gaussian given the non-Gaussian
-part $u_k \in \mathbb{R}^{n_u}$. The Gaussian process noise $q_{k-1}
-\sim \mathrm{N}(0, Q(u_{k-1}))$ and observation noise $r_{k} \sim
-\mathrm{N}(0, R(u_{k}))$ are assumed to be time-white. Here we
-formally treat the variable $u_k$ as having a probability density with
-respect to the Lebesgue measure, but all the results apply or can be
-easily generalized to random variables without such densities.
+where $y_k$ for $k=1,\ldots,M$ are the measurements and the state consists of two parts $x_k = (u_k,z_k)$, where $z_k \in \mathbb{R}^{n_z}$ is conditionally Gaussian given the non-Gaussian part $u_k \in \mathbb{R}^{n_u}$. The Gaussian process noise $q_{k} \sim \mathrm{N}(0, Q(u_{k}))$ and observation noise $r_{k} \sim \mathrm{N}(0, R(u_{k}))$ are assumed to be time-white. Here we formally treat the variable $u_k$ as having a probability density with respect to the Lebesgue measure, but all the results apply or can be easily generalised to random variables without such densities.
 
-In particular, we consider smoothers that it do not require
-sampling of the linear portion of the state $z_k$. This feature is
-required for the smoother to be truly Rao-Blackwellized
-(marginalized) as opposed to, for example, smoothers presented by
-\cite{Fong+Godsill+Doucet+West:2002} and \cite{Lindsten+Schon:2011},
-which also sample the linear part. 
+In particular, we consider smoothers which do not require sampling of the linear portion of the state $z_k$. This feature is required for the smoother to be truly Rao-Blackwellised (marginalised) as opposed to, for example, smoothers presented by \cite{Fong+Godsill+Doucet+West:2002} and \cite{Lindsten+Schon:2011}, which also sample the linear part.
 
 \subsection{Bayesian Filtering and Smoothing}
 %
-The theory of optimal Bayesian filtering and smoothing
-\cite{Ho+Lee:1964,Lee:1964} is considered with state estimation in
-probabilistic state space models of the form
+The theory of optimal Bayesian filtering and smoothing \cite{Ho+Lee:1964,Lee:1964} addresses the problem of state estimation in probabilistic state space models of the form,
 %
 \begin{equation}
 \begin{split}
@@ -171,15 +157,9 @@ probabilistic state space models of the form
 \label{eq:genmodel}
 \end{equation}
 %
-where $k=1,\ldots,M$, $x_k \in \mathbb{R}^{d_x}$ is the state of the
-system, $y_k \in \mathbb{R}^{d_y}$ is the observation at time step
-$k$, $p(x_k \, \,|\, \, x_{k-1})$ is the Markovian dynamic model
-probability density and $p(y_k \, \,|\, \, x_{k})$ is the measurement
-model probability density.
+where $k=1,\ldots,M$, $x_k \in \mathbb{R}^{d_x}$ is the state of the system, $y_k \in \mathbb{R}^{d_y}$ is the observation at time step $k$, $p(x_k \, \,|\, \, x_{k-1})$ is the Markovian dynamic model probability density and $p(y_k \, \,|\, \, x_{k})$ is the measurement model probability density.
 
-The formal {\em Bayesian filtering} solution to this state space model is
-given by the well-known Bayesian filtering equations
-\cite{Ho+Lee:1964}:
+The formal {\em Bayesian filtering} solution to this state space model is given by the well-known recursions \cite{Ho+Lee:1964},
 %
 \begin{equation}
 \begin{split}
@@ -192,57 +172,45 @@ given by the well-known Bayesian filtering equations
 \label{eq:bfilter}
 \end{equation}
 %
-In the linear Gaussian case, these equations have a closed form
-solution, which leads to the celebrated Kalman filter
-\cite{Kalman:1960}.
+In the linear Gaussian case, these equations have a closed form solution, which leads to the celebrated Kalman filter \cite{Kalman:1960}.
 
-The {\em Bayesian smoothing} solutions to such probabilistic state
-space models can be divided into (1) two-filter smoothers (2)
-forward-backward smoothers:
+The {\em Bayesian smoothing} solutions to such probabilistic state space models can be divided into (1) two-filter smoothers (2) forward-backward smoothers:
 %
 \begin{enumerate}
-\item {\em The two-filter} smoother \cite{Lee:1964,Kitagawa:1994} can be
-  interpreted as a combination of forward and backward Bayesian filters:
+\item {\em The two-filter} smoother \cite{Lee:1964,Kitagawa:1994} can be interpreted as a combination of forward and backward Bayesian filters,
 %
 \begin{equation}
 \begin{split}
   p(x_k \,|\, y_{1:M})
   &\propto
-  p(x_k \,|\, y_{1:k}) \, p(y_{k+1:M} \,|\, x_k) \\
+  p(x_k \,|\, y_{1:k}) \, p(y_{k+1:M} \,|\, x_k),
 \end{split}
 %\nonumber
 \end{equation}
-%%
-where $p(x_k \,|\, y_{1:k})$ is computed by an ordinary forward filter, and
-$p(y_{k+1:M} \,|\, x_k)$ by an unnormalized filter using the backward recursion:
+
+where $p(x_k \,|\, y_{1:k})$ is computed by an ordinary forward filter, and $p(y_{k+1:M} \,|\, x_k)$ by an unnormalised filter using the backward recursion,
 %
 \begin{equation}
 \begin{split}
-  p(y_{k+1:M} \,|\, x_k) 
+  p(y_{k+1:M} \,|\, x_k)
   &= \int p(y_{k+1:M} \,|\, x_{k+1}) \, p(x_{k+1} \,|\, x_k) \,
           dx_{k+1} \\
-  p(y_{k:M} \,|\, x_k) 
-  &= p(y_k \,|\, x_k) \, p(y_{k+1:M} \,|\, x_k),
+  p(y_{k:M} \,|\, x_k)
+  &= p(y_k \,|\, x_k) \, p(y_{k+1:M} \,|\, x_k).
 \end{split}
 %\nonumber
 \label{eq:tfsmooth}
 \end{equation}
-%
-In the linear case we get a combination of two Kalman filters
-\cite{Fraser+Potter:1969}, one going forward and one backward in time.
-For numerical reasons, the backward Kalman filter is usually
-convenient to implement as an information filter. \comment{Something
-about the related particle approximations here}
 
-\item {\em The forward-filtering backward-smoothing} algorithm
-  \cite{Kitagawa:1987} is based on a backward sweep, which uses the
-  filter results:
+In the linear case we get a combination of two Kalman filters \cite{Fraser+Potter:1969}, one going forward and one backward in time. For numerical reasons, the backward Kalman filter is usually convenient to implement as an information filter. \comment{Cite something?}
+
+\item {\em The forward-filtering backward-smoothing} algorithm   \cite{Kitagawa:1987} is based on a backward sweep, which uses the filter results,
 %
 \begin{equation}
 \begin{split}
  &p(x_{k} \,|\, y_{1:M})
   = p(x_{k}\,|\,y_{1:k}) \\
- &\qquad \times \int 
+ &\qquad \times \int
     \frac{p(x_{k+1} \,|\, y_{1:M}) \, p(x_{k+1}\,|\,x_{k})}
          {p(x_{k+1}\,|\,y_{1:k})} \, dx_{k+1}.
 \end{split}
@@ -250,22 +218,12 @@ about the related particle approximations here}
 \label{eq:fbsmooth}
 \end{equation}
 %
-In the Gaussian case this smoother reduces to the Rauch-Tung-Striebel
-(RTS) smoother \cite{Rauch+Tung+Striebel:1965}. \comment{Something
-about the related particle approximations here}
+In the Gaussian case this smoother reduces to the Rauch-Tung-Striebel (RTS) smoother \cite{Rauch+Tung+Striebel:1965}.
 \end{enumerate}
 
 \subsection{Particle Smoothing}
 %
-As the Bayesian filtering equations do not in general admit closed
-form solutions, approximations are needed. A general class of these is
-the particle filter
-\cite{Gordon+Salmon+Smith:1993,Kitagawa:1996,Doucet+Godsill+Andrieu:2000,Ristic+Arulampalam+Gordon:2004,Cappe+Godsill+Moulines:2007},
-which generates a Monte Carlo approximation to the filtering
-distribution using the sequential importance resampling (SIR)
-algorithm. Formally this means the following approximation to the
-probability density, which consists of a weighted sum of Dirac delta
-functions:
+As the Bayesian filtering equations do not in general admit closed form solutions, approximations are needed. A general class of these is the particle filter \cite{Gordon+Salmon+Smith:1993,Kitagawa:1996,Doucet+Godsill+Andrieu:2000,Ristic+Arulampalam+Gordon:2004,Cappe+Godsill+Moulines:2007}, which generates a Monte Carlo approximation to the filtering distribution using the sequential importance resampling (SIR) algorithm. Formally this means the following approximation to the probability density, which consists of a weighted sum of Dirac delta functions:
 %
 \begin{equation}
   p(x_k\,|\,y_{1:k}) \approx \sum_i w_k^{(i)} \delta(x_k - x_k^{(i)}).
@@ -312,16 +270,9 @@ functions:
 %
 %\subsection{Particle Smoothing}
 
-Analogously to particle filters, particle smoothers can be used to
-form approximate solutions to the Bayesian smoothing equations,
-which also do not admit closed form solutions in general. The basic particle
-smoother of \cite{Kitagawa:1996} is based on direct use of SIR for
-smoothing---if we simply store the entire sample histories and resample these
-instead of single-step samples, we obtain a smoothing solution
-alongside the filtering solution.
+Analogously to particle filters, particle smoothers can be used to form approximate solutions to the Bayesian smoothing equations, which also do not admit closed form solutions in general. The most basic particle smoother of \cite{Kitagawa:1996} is a trivial extension to the particle filter---if we simply store the entire sample histories and resample these instead of single-step samples, we obtain a smoothing solution alongside the filtering solution.
 
-The generic SIR particle filter/smoother \cite{Kitagawa:1996} works as
-follows:
+The generic SIR particle filter/smoother \cite{Kitagawa:1996} works as follows.
 %
 \begin{algo}[Basic particle filter/smoother]
   Given the state space model \eqref{eq:genmodel}, importance
@@ -370,32 +321,17 @@ follows:
 \end{itemize}
 \end{algo}
 %
-The problem with this approach is that
-its estimate of the smoothing distribution tends to be quite
-degenerate \cite{Kitagawa:1996}. For this reason, various alternative
-particle smoothers have been proposed. One possible approach is to
-approximate the two-filter formula using particle methods
-\cite{Kitagawa:1996,Briers+Doucet+Maskell:2010,Fearnhead:2010}.  The
-disadvantage of such two-filter type smoothers is that the
-construction of the backward filter can be quite troublesome. Another
-way is to compute new weights for the particle filter results using an
-additional backward sweep, as is done in particle smoothers of
-\cite{Hurzeler+Kunsch:1998} and \cite{Doucet+Godsill+Andrieu:2000}.
+The problem with this approach is that its estimate of the smoothing distribution tends to be degenerate \cite{Kitagawa:1996}, with few or only one unique particles throughout most of the history. For this reason, various alternative particle smoothers have been proposed. One possible approach is to approximate the two-filter formula using particle methods \cite{Kitagawa:1996,Briers+Doucet+Maskell:2010,Fearnhead:2010}. The disadvantage of such two-filter type smoothers is that the construction of the backward filter can be quite troublesome. \comment{Is it really? Briers \& co seem to have done it in their 2010 paper.} Another way is to compute new weights for the particle filter results using an additional backward sweep, as is done in particle smoothers of \cite{Hurzeler+Kunsch:1998} and \cite{Doucet+Godsill+Andrieu:2000}.
 %Because these approaches only approximate the marginal smoothing
 %distributions without generating explicit trajectories from the joint
 %smoothing distribution, their usage in Rao-Blackwellized particle
-%smoothing is not straight-forward. 
+%smoothing is not straight-forward.
 
-The {\em backward-simulation particle
-smoother} of \cite{Godsill+Doucet+West:2004} is based on simulation of
-individual trajectories backwards, starting from the last step and
-proceeding to the first. Assume that we have already simulated a trajectory
-$\tilde{x}_{k+1:M}$ from the smoothing distribution. Because of the
-Markovianity of the model, we get:
+The {\em backward-simulation particle smoother} of \cite{Godsill+Doucet+West:2004} is based on simulation of individual trajectories backwards, starting from the last step and proceeding to the first. Assume that we have already simulated a trajectory $\tilde{x}_{k+1:M}$ from the smoothing distribution. Because of the Markovianity of the model, we get,
 %
 \begin{equation}
 \begin{split}
-  p(x_{k}\,|\,\tilde{x}_{k+1},y_{1:M}) 
+  p(x_{k}\,|\,\tilde{x}_{k+1},y_{1:M})
   &= p(x_{k}\,|\,\tilde{x}_{k+1},y_{1:k}) \\
   &= \frac{p(\tilde{x}_{k+1}\,|\,x_{k},y_{1:k}) \, p(\tilde{x}_{k}\,|\,y_{1:k})}
           {p(\tilde{x}_{k+1}\,|\,y_{1:k})} \\
@@ -405,22 +341,18 @@ Markovianity of the model, we get:
 \end{split}
 \end{equation}
 %
-By substituting the SIR filter approximation in Equation
-\eqref{eq:pfapp}, we get
+By substituting the SIR filter approximation in Equation \eqref{eq:pfapp}, we get,
 %
 \begin{equation}
 \begin{split}
-   p(x_{k}\,|\,\tilde{x}_{k+1},y_{1:M}) 
+   p(x_{k}\,|\,\tilde{x}_{k+1},y_{1:M})
    &\propto \sum_i w_k^{(i)} \, p(\tilde{x}_{k+1}\,|\,x_{k}^{(i)}) \,
    \delta(x_k - x_k^{(i)}).
 \end{split}
 \label{eq:backsimeq}
 \end{equation}
 %
-We can now draw a sample from this distribution by sampling
-$x_{k}^{(i)}$ with probability $\propto w_k^{(i)}
-p(\tilde{x}_{k+1}\,|\,x_{k}^{(i)})$. The resulting algorithm is the
-following:
+We can now draw a sample from this distribution by selecting $x_{k}^{(i)}$ with probability $\propto w_k^{(i)} p(\tilde{x}_{k+1}\,|\,x_{k}^{(i)})$. The resulting algorithm is as follows.
 %
 \begin{algo}[Backward-simulation particle smoother]
   \label{alg:bssmooth} \index{Backward-simulation particle smoother}
@@ -444,51 +376,37 @@ following:
 \end{itemize}
 \end{algo}
 %
-Given $S$ iterations of the above procedure resulting in sample
-trajectories $\tilde{x}_{1:M}^{(j)}$ for $j=1,\ldots,S$ the
-smoothing distribution can now be approximated as
+Given $S$ iterations of the above procedure resulting in sample trajectories $\tilde{x}_{1:M}^{(j)}$ for $j=1,\ldots,S$ the smoothing distribution can now be approximated as,
 %
 \begin{equation}
      p(x_{1:M}\,|\,y_{1:M}) \approx
       \frac{1}{S} \sum_j \delta(x_{1:M} - \tilde{x}_{1:M}^{(j)}).
 \end{equation}
 %
-The marginal distribution samples for a step $k$ can be obtained by
-extracting the $k$th components from the above trajectories. The
-computational complexity of the method is $O(S \, M \, N)$. However,
-the result is much less degenerate than of the particle smoother of
-\cite{Kitagawa:1996}.
+The marginal distribution samples for a step $k$ can be obtained by extracting the $k$th components from the above trajectories. The computational complexity of the method is $O(S \, M \, N)$. However, the result is much less degenerate than of the particle smoother of the filter/smoother.
 
-The {\em reweighting particle smoother} of \cite{Hurzeler+Kunsch:1998} and
-\cite{Doucet+Godsill+Andrieu:2000} is based on computing new weights
-for the SIR filtering particles such that we get an approximation to
-the smoothing distribution. Assume that have already computed the
-weights for the following approximation, where the particles
-$x_{k+1}^{(i)}$ are from the SIR filter:
+The {\em reweighting particle smoother} of \cite{Hurzeler+Kunsch:1998} and \cite{Doucet+Godsill+Andrieu:2000} is based on computing new weights for the SIR filtering particles such that we get an approximation to the smoothing distribution. Assume that we have already computed the weights for the following approximation, where the particles $x_{k+1}^{(i)}$ are from the filter,
 %
 \begin{equation}
 \begin{split}
-   p(x_{k+1}\,|\,y_{1:M}) 
+   p(x_{k+1}\,|\,y_{1:M})
    \approx
    \sum_i w^{(i)}_{k+1|M} \, \delta(x_{k+1} - x_{k+1}^{(i)}).
 \end{split}
 \label{eq:rwassume}
 \end{equation}
 %
-By substituting the dynamic model to the SIR filter approximation
-we get the following approximation to the predicted distribution:
+By substituting the dynamic model to the filter approximation we get the following approximation to the predicted distribution,
 %
 \begin{equation}
 \begin{split}
   p(x_{k+1}\,|\,y_{1:k})
-  &\approx \sum_j w_k^{(j)} \, p(x_{k+1}\,|\,x_{k}^{(j)}),
+  &\approx \sum_j w_k^{(j)} \, p(x_{k+1}\,|\,x_{k}^{(j)}).
 \end{split}
 \label{eq:rwpred}
 \end{equation}
 %
-Substituting Equations \eqref{eq:rwassume} and \eqref{eq:rwpred} into
-the integral in Equation \eqref{eq:fbsmooth} results in the
-approximation:
+Substituting Equations \eqref{eq:rwassume} and \eqref{eq:rwpred} into the integral in Equation \eqref{eq:fbsmooth} results in the approximation,
 %
 \begin{equation}
 \begin{split}
@@ -504,8 +422,7 @@ approximation:
 \end{split}
 \end{equation}
 %
-By substituting the SIR filter approximation and the approximation
-above to Equation \eqref{eq:fbsmooth} we get:
+By substituting the SIR filter approximation and the approximation above to Equation \eqref{eq:fbsmooth} we get,
 %
 \begin{equation}
 \begin{split}
@@ -516,7 +433,7 @@ above to Equation \eqref{eq:fbsmooth} we get:
                  {p(x_{k+1}\,|\,y_{1:k})} \right]
          dx_{k+1} \\
   &\approx
-  \sum_l 
+  \sum_l
   \sum_i w^{(i)}_{k+1|M} \,
   \frac{w_k^{(l)} \,  p(x_{k+1}^{(i)}\,|\,x_{k}^{(l)})}
    {\left[ \sum_j w_k^{(j)} \, p(x_{k+1}^{(i)}\,|\,x_{k}^{(j)}) \right]} \, \delta(x_k - x_{k}^{(l)}),
@@ -524,7 +441,7 @@ above to Equation \eqref{eq:fbsmooth} we get:
 \label{eq:rw}
 \end{equation}
 %
-which gives the following recursion for the weights:
+which gives the following recursion for the weights,
 %
 \begin{equation}
 \begin{split}
@@ -535,7 +452,7 @@ which gives the following recursion for the weights:
 \end{split}
 \end{equation}
 %
-Thus we get the following algorithm:
+Thus we get the following algorithm.
 %
 \begin{algo}[Reweighting particle smoother]
   \label{alg:rwsmooth} \index{Reweighting particle smoother}
@@ -566,36 +483,20 @@ Thus we get the following algorithm:
 \end{itemize}
 \end{algo}
 %
-The computational complexity of the method is $O(M\,N^2)$, that is,
-the same as of the backward-simulation smoother with $S = N$ simulated
-trajectories.
+The computational complexity of the method is $O(M\,N^2)$, that is, the same as of the backward-simulation smoother with $S = N$ simulated trajectories.
 
 
 \comment{Here will be a short explanation of two filter based particle
   smoothers}
 
 
-\section{Algorithms for Rao-Blackwellized Particle Smoothing}
+\section{Algorithms for Rao-Blackwellised Particle Smoothing}
 
 \subsection{Existing Approaches to RBPS}
 %
-Although the generic particle filters and smoothers can be used in
-almost any kind of models, the required number of samples for a
-sufficient accuracy can be high. The efficiency of sampling can be
-improved by Rao-Blackwellization
-\cite{Doucet+Godsill+Andrieu:2000,Chen+Liu:2000}, where part of the
-state is marginalized out in closed form, and only the remaining part
-is sampled. Because the sampled space has a lower dimension, fewer
-particles are required. Such closed form marginalization is possible,
-for example, in conditionally linear Gaussian models in Equations
-\eqref{eq:condgauss}.
+Although the generic particle filters and smoothers can be used in almost any kind of models, the required number of samples for a sufficient accuracy can be high. The efficiency of sampling can be improved by Rao-Blackwellisation \cite{Doucet+Godsill+Andrieu:2000,Chen+Liu:2000}, where part of the state is marginalised out in closed form, and only the remaining part is sampled. Because the sampled space has a lower dimension, fewer particles are required. Such closed form marginalization is possible, for example, in conditionally linear Gaussian models in Equations \eqref{eq:condgauss}.
 
-The Rao-Blackwellized particle filter (RBPF)
-\cite{Doucet+Godsill+Andrieu:2000,Chen+Liu:2000} is the algorithm
-which results if we marginalize the linear state $z_k$ from the
-conditionally linear Gaussian model \eqref{eq:condgauss}, and use SIR
-for the non-Gaussian part $u_k$ only. At each step the approximation
-to the filtering density is a mixture of Gaussians:
+The Rao-Blackwellised particle filter (RBPF) \cite{Doucet+Godsill+Andrieu:2000,Chen+Liu:2000} is the algorithm which results if we marginalise the linear state $z_k$ from the conditionally linear Gaussian model \eqref{eq:condgauss}, and use SIR for the non-Gaussian part $u_k$ only. At each step the approximation to the filtering density is a mixture of Gaussians,
 %
 \begin{equation}
     p(u_k,z_k\,|\,y_{1:k})
@@ -604,15 +505,7 @@ to the filtering density is a mixture of Gaussians:
 \nonumber
 \end{equation}
 %
-where $u_k^{(i)}$ are the latent variable samples and $m_k^{(i)}$,
-$P_k^{(i)}$ are the mean and covariance of the Kalman filter
-conditioned on the corresponding history of latent
-variables. Analogously to the non-Rao-Blackwellized case, we can
-obtain a \cite{Kitagawa:1996} type of approximation to the smoothing
-solution along with the filtering by storing and resampling the
-histories $u^{(i)}_{0:k}$ and the corresponding Kalman filter means
-and covariances as well. The marginal smoothing solution for
-$u^{(i)}_{0:k}$ is then the following:
+where $u_k^{(i)}$ are the latent variable samples and $m_k^{(i)}$, $P_k^{(i)}$ are the mean and covariance of the Kalman filter conditioned on the corresponding history of latent variables. Analogously to the non-Rao-Blackwellised case, we can obtain a \cite{Kitagawa:1996} type of approximation to the smoothing solution along with the filtering by storing and resampling the histories $u^{(i)}_{0:k}$ and the corresponding Kalman filter means and covariances as well. The marginal smoothing solution for $u^{(i)}_{0:k}$ is then the following,
 %
 \begin{equation}
   p(u_{0:k}\,|\,y_{1:k}) \approx
@@ -620,13 +513,9 @@ $u^{(i)}_{0:k}$ is then the following:
 \label{eq:rbpf_usmooth}
 \end{equation}
 %
-The approximation to the linear part of the smoothing distribution can
-then be obtained by running Rauch-Tung-Striebel (RTS) smoothers for
-each of the histories to yield smoothed means and covariances
-$m^{s,(i)}_{0:n}$ and $P^{s,(i)}_{0:n}$. The algorithm is the
-following:
+The approximation to the linear part of the smoothing distribution can then be obtained by running Rauch-Tung-Striebel (RTS) smoothers for each of the histories to yield smoothed means and covariances $m^{s,(i)}_{0:n}$ and $P^{s,(i)}_{0:n}$. The algorithm is the following,
 %
-\begin{algo}[Rao-Blackwellized particle filter/smoother] \label{eq:rbpfs}
+\begin{algo}[Rao-Blackwellised particle filter/smoother] \label{eq:rbpfs}
   Given the filtering model \eqref{eq:condgauss} and
   measurements $\{y_k\}$:
 \begin{itemize}
@@ -649,9 +538,9 @@ following:
 %
   \begin{equation}
   \begin{split}
-    m_k^{-(i)} &= A(u_{k-1}^{(i)}) \, m_{k-1}^{(i)} \\
-    P_k^{-(i)} &= A(u_{k-1}^{(i)}) \, P_{k-1}^{(i)} \, A^T(u_{k-1}^{(i)})
-                + Q(u_{k-1}^{(i)}) \\
+    m_k^{-(i)} &= A(u_{k}^{(i)}) \, m_{k-1}^{(i)} \\
+    P_k^{-(i)} &= A(u_{k}^{(i)}) \, P_{k-1}^{(i)} \, A^T(u_{k}^{(i)})
+                + Q(u_{k}^{(i)}) \\
    \mu_k^{(i)} &= H(u_{k}^{(i)}) \, m_k^{-(i)} \\
      S_k^{(i)} &= H(u_{k}^{(i)}) \, P_{k}^{-(i)} \, H^T(u_{k}^{(i)})
                 + R(u_{k}^{(i)}) \\
@@ -702,12 +591,7 @@ $u_{0:k}^{(i)}$.
 \end{itemize}
 \end{algo}
 %
-The Rao-Blackwellized particle smoother in this simple form also has
-the same disadvantage as the SIR particle smoother, that is, the
-smoothed estimate of $u_{k}$ can be quite degenerate if $n \gg
-k$. Fortunately, the smoothed estimates of the linear states $z_k$ can
-still be relatively good, because their degeneracy is avoided by
-Rao-Blackwellization.
+The Rao-Blackwellised particle smoother in this simple form also has the same disadvantage as the SIR particle smoother, that is, the smoothed estimate of $u_{k}$ can be quite degenerate if $M \gg k$. Fortunately, the smoothed estimates of the linear states $z_k$ can still be relatively good, because their degeneracy is avoided by Rao-Blackwellisation.
 
 \comment{Fong et al. smoother}
 
@@ -773,31 +657,31 @@ marginal likelihood by augmenting with $z_k$, which gives:
   &p(y_{1:M},z_k\,|\,u_{0:M}) \\
 %  &=
 %    p(y_{1:M}\,|\,z_k,u_{0:M}) \, p(z_k\,|\,u_{0:M}) \\
-%  &= 
+%  &=
 %    p(y_{k+1:M}\,|\,z_k,u_{0:M},y_{1:k}) \,
 %    p(y_{1:k}\,|\,z_k,u_{0:M}) \,
 %    p(z_k\,|\,u_{0:M}) \\
-%  &= 
+%  &=
 %    p(y_{k+1:M}\,|\,z_k,u_{k:M}) \,
 %    p(y_{1:k}\,|\,z_k,u_{0:k}) \,
 %    p(z_k\,|\,u_{0:M}) \\
-%  &=     
+%  &=
 %    p(y_{k+1:M}\,|\,z_k,u_{k:M}) \,
 %    \frac{p(z_k \,|\,y_{1:k},u_{0:k}) \, p(y_{1:k}\,|\,u_{0:k})}
 %         {p(z_k \,|\,u_{0:k})}
 %    \, p(z_k\,|\,u_{0:M}) \\
-%  &=     
+%  &=
 %    p(y_{k+1:M}\,|\,z_k,u_{k:M}) \,
 %    p(z_k \,|\,y_{1:k},u_{0:k}) \,
 %    p(y_{1:k}\,|\,u_{0:k}) \\
-  &= 
+  &=
     p(y_{k+1:M}\,|\,z_k,u_{0:M},y_{1:k}) \,
     p(y_{1:k},z_k \,|\, u_{0:M}) \\
-  &= 
+  &=
     p(y_{k+1:M}\,|\,z_k,u_{k:M}) \,
     p(z_k \,|\, y_{1:k},u_{0:M}) \,
     p(y_{1:k} \,|\, u_{0:M}) \\
-  &= 
+  &=
     p(y_{k+1:M}\,|\,z_k,u_{k:M}) \,
     p(z_k \,|\, y_{1:k},u_{0:k}) \,
     p(y_{1:k} \,|\, u_{0:k}).
@@ -849,13 +733,13 @@ By the two-filter smoother equations we then get
 \begin{split}
   &p(y_{k+1:M} \,|\, z_{k},u_{k:M}) \\
   &=
-  \int 
+  \int
   p(y_{k+1:M} \,|\, z_{k+1},u_{k+1:M}) \,
   p(z_{k+1} \,|\, z_{k},u_{k}) \, dz_{k+1} \\
-  &= \int 
+  &= \int
   Z_{k+1} \mathrm{N}(z_{k+1} \,|\, m^{b}_{k+1}, P^{b}_{k+1}) \\
   &\qquad \times \mathrm{N}(z_{k+1} \,|\,A(u_k) \, z_k, Q(u_k)) \, dz_{k+1} \\
-  &= 
+  &=
   Z_{k+1} |\det A(u_k)|^{-1}
   \mathrm{N}(z_{k} \,|\, m^{-b}_{k}, P^{-b}_{k}),
 \end{split}
@@ -880,9 +764,9 @@ and
   &= \mathrm{N}(y_{k} \,|\, H(u_k) \, z_k, R(u_k)) \\
   &\quad \times Z_{k+1} |\det A(u_k)|^{-1}
   \mathrm{N}(z_{k} \,|\, m^{-b}_{k}, P^{-b}_{k}) \\
-  &= Z_{k+1} |\det A(u_k)|^{-1} \, \mathrm{N}(y_{k} \,|\, \mu^b_k, S^b_k) \, 
+  &= Z_{k+1} |\det A(u_k)|^{-1} \, \mathrm{N}(y_{k} \,|\, \mu^b_k, S^b_k) \,
      \mathrm{N}(z_{k} \,|\, m^{b}_{k}, P^{b}_{k}) \\
-  &= Z_{k} \, 
+  &= Z_{k} \,
      \mathrm{N}(z_{k} \,|\, m^{b}_{k}, P^{b}_{k}),
 \end{split}
 \end{equation}
@@ -921,9 +805,9 @@ Integrating over $z_k$ then gives
 \begin{equation}
 \begin{split}
   &p(y_{1:M}\,|\,u_{0:M}) \\
-  &= Z_{k+1} \, |\det A(u_k)|^{-1} 
+  &= Z_{k+1} \, |\det A(u_k)|^{-1}
   \mathrm{N}(m_k\,|\,m^{-b}_{k},P_k+P^{-b}_{k}) \\
-  &\qquad \times 
+  &\qquad \times
   \prod_{j=1}^k \mathrm{N}(y_j\,|\,H(u_j) \, m^-_j,S_j).
 \end{split}
 \end{equation}
@@ -935,9 +819,9 @@ terms that only depend on $u_{k+1:M}$, we get
 \begin{split}
   &p(u_{0:k}\,|\,u_{k+1:M},y_{1:M}) \\
   &\propto
-  |\det A(u_k)|^{-1} 
-  \mathrm{N}(m_k\,|\,m^{-b}_{k},P_k+P^{-b}_{k}) \, p(u_{k+1}\,|\,u_{k}) \\  
-  &\quad \times 
+  |\det A(u_k)|^{-1}
+  \mathrm{N}(m_k\,|\,m^{-b}_{k},P_k+P^{-b}_{k}) \, p(u_{k+1}\,|\,u_{k}) \\
+  &\quad \times
   p(u_0) \,
   \prod_{j=1}^k p(u_{j}\,|\,u_{j-1}) \,
   \mathrm{N}(y_j\,|\,H(u_j) \, m^-_j,S_j).
@@ -952,9 +836,9 @@ approximation then gives
 \begin{split}
   &p(u_{0:k}\,|\,u_{k+1:M},y_{1:M}) \\
   &\propto
-  |\det A(u_k)|^{-1} 
-  \mathrm{N}(m_k\,|\,m^{-b}_{k},P_k+P^{-b}_{k}) \, p(u_{k+1}\,|\,u_{k}) \\  
-  &\quad \times  
+  |\det A(u_k)|^{-1}
+  \mathrm{N}(m_k\,|\,m^{-b}_{k},P_k+P^{-b}_{k}) \, p(u_{k+1}\,|\,u_{k}) \\
+  &\quad \times
   \left[ \sum_{i=1}^N w^{(i)}_k \, \delta(u_{0:k} - u^{(i)}_{0:k}) \right].
 \end{split}
 \label{eq:rbbacksimeq}
@@ -978,7 +862,7 @@ The final algorithm is the following:
         w_k^{(i)} \,
         p(\tilde{u}_{k+1}\,|\,u_{k}^{(i)}) \,
         |\det A(u_k^{(i)})|^{-1} \\
-        &\times 
+        &\times
         \mathrm{N}(m^{(i)}_k \,|\,m^{-b,(i)}_{k},P^{(i)}_k+P^{-b,(i)}_{k}),
      \end{split}
     \end{equation}
@@ -1026,7 +910,7 @@ the optimal smoothing equation:
 \begin{split}
  &p(z_{k},u_{k} \,|\, y_{1:n}) \\
  &= p(z_{k},u_{k}\,|\,y_{1:k}) \\
- &\times \iint 
+ &\times \iint
     \frac{p(z_{k+1},u_{k+1} \,|\, y_{1:n}) \, p(z_{k+1},u_{k+1}\,|\,z_{k},u_{k})}
          {p(z_{k+1},u_{k+1}\,|\,y_{1:k})} \, dz_{k+1} \, du_{k+1} \\
 \end{split}
@@ -1059,7 +943,7 @@ of Gaussians as follows:
 \begin{equation}
 \begin{split}
   &p(u_{k+1},z_{k+1}\,|\,y_{1:n}) \\
-  &= 
+  &=
     \sum_{i} w^{(i)}_{k+1|n} \, \mathrm{N}(z_{k+1}\,|\,\tilde{m}_{k+1}^{(i),s},\tilde{P}_{k+1}^{(i),s}) \,
     \delta(u_{k+1} - u_{k+1}^{(i)}),
 \end{split}
@@ -1074,8 +958,8 @@ those trajectories.
 %
 %\begin{equation}
 %\begin{split}
-%  p(u_{k+1}\,|\,y_{1:n}) 
-%  &= 
+%  p(u_{k+1}\,|\,y_{1:n})
+%  &=
 %    \int \sum_{i} w^{(i)}_{k+1|n} \, \mathrm{N}(z_{k+1}\,|\,\tilde{m}_{k+1}^{(i),s},\tilde{P}_{k+1}^{(i),%s}) \,
 %    \delta(u_{k+1} - u_{k+1}^{(i)}) \, dz_{k+1} \\
 %  &=
@@ -1089,7 +973,7 @@ Substituting above into the smoothing equation gives
 \begin{split}
  &p(z_{k},u_{k} \,|\, y_{1:n}) \\
 % &= \sum_j w_k^{(j)} \, \mathrm{N}(z_{k} | m^{(j)}_{k}, P^{(j)}_{k}) \, \delta(u_{k} - u_{k}^{(j)}) \\
-% &\times \iint 
+% &\times \iint
 %    \frac{\sum_{i} w^{(i)}_{k+1|n} \,
 %          \mathrm{N}(z_{k+1}\,|\,\tilde{m}_{k+1}^{(i),s},\tilde{P}_{k+1}^{(i),s}) \,
 %          \delta(u_{k+1} - u_{k+1}^{(i)}) \,
@@ -1097,23 +981,23 @@ Substituting above into the smoothing equation gives
 %         {\sum_l w_k^{(l)} \, p(u_{k+1}\,|\,u_k^{(l)}) \, \mathrm{N}(z_{k+1} | m^{-(l)}_{k+1}, P^{-(l)}_{k+1})}
 %         \, dz_{k+1} \, du_{k+1} \\
 % &= \sum_{ij} w_k^{(j)} \, \mathrm{N}(z_{k} | m^{(j)}_{k}, P^{(j)}_{k}) \, \delta(u_{k} - u_{k}^{(j)}) \\
-% &\times \int 
+% &\times \int
 %    \frac{w^{(i)}_{k+1|n} \,
 %          \mathrm{N}(z_{k+1}\,|\,\tilde{m}_{k+1}^{(i),s},\tilde{P}_{k+1}^{(i),s}) \,
 %          \mathrm{N}(z_{k+1} | A(u_k) \, z_k, Q(u_k)) \, p(u_{k+1}^{(i)} | u_k)}
 %        {\sum_l w_k^{(l)} \, p(u_{k+1}^{(i)}\,|\,u_k^{(l)}) \,
 %          \mathrm{N}(z_{k+1} | m^{-(l)}_{k+1}, P^{-(l)}_{k+1})} \, dz_{k+1} \\
-% &= \sum_{ij} w^{(i)}_{k+1|n} \, w_k^{(j)} \, 
+% &= \sum_{ij} w^{(i)}_{k+1|n} \, w_k^{(j)} \,
 %      p(u_{k+1}^{(i)} | u_k) \, \delta(u_{k} - u_{k}^{(j)}) \\
-% &\times \int 
+% &\times \int
 %    \frac{\mathrm{N}(z_{k+1}\,|\,\tilde{m}_{k+1}^{(i),s},\tilde{P}_{k+1}^{(i),s}) \,
 %          \mathrm{N}(z_{k+1} | A(u_k) \, z_k, Q(u_k))}
 %        {\sum_l w_k^{(l)} \, p(u_{k+1}^{(i)}\,|\,u_k^{(l)}) \,
 %          \mathrm{N}(z_{k+1} | m^{-(l)}_{k+1}, P^{-(l)}_{k+1})} \, dz_{k+1} \\
 %  &\times \mathrm{N}(z_{k} | m^{(j)}_{k}, P^{(j)}_{k}).
- &= \sum_{ij} w^{(i)}_{k+1|n} \, w_k^{(j)} \, 
+ &= \sum_{ij} w^{(i)}_{k+1|n} \, w_k^{(j)} \,
       p(u_{k+1}^{(i)} | u_k^{(j)}) \, \delta(u_{k} - u_{k}^{(j)}) \\
- &\times \int 
+ &\times \int
     \frac{\mathrm{N}(z_{k+1}\,|\,\tilde{m}_{k+1}^{(i),s},\tilde{P}_{k+1}^{(i),s}) \,
           \mathrm{N}(z_{k+1} | A(u_k^{(j)}) \, z_k, Q(u_k^{(j)}))}
         {\sum_l w_k^{(l)} \, p(u_{k+1}^{(i)}\,|\,u_k^{(l)}) \,
@@ -1157,9 +1041,9 @@ Then we get
 \begin{equation}
 \begin{split}
  &p(z_{k},u_{k} \,|\, y_{1:n}) \\
- &= \sum_{ij} w^{(i)}_{k+1|n} \, w_k^{(j)} \, 
+ &= \sum_{ij} w^{(i)}_{k+1|n} \, w_k^{(j)} \,
       p(u_{k+1}^{(i)} | u_k^{(j)}) \, \delta(u_{k} - u_{k}^{(j)}) \\
- &\times \int 
+ &\times \int
     \frac{\mathrm{N}(z_{k+1}\,|\,\tilde{m}_{k+1}^{(i),s},\tilde{P}_{k+1}^{(i),s}) \,
           \mathrm{N}(z_{k+1} | A(u_k^{(j)}) \, z_k, Q(u_k^{(j)}))}
         {C_i \, \mathrm{N}(z_{k+1} | \hat{m}^{-(i)}_{k+1}, \hat{P}^{-(i)}_{k+1})} \, dz_{k+1} \\
@@ -1214,7 +1098,7 @@ used for compute the weights for the representations
 %
 \begin{equation}
 \begin{split}
-  p(u_{k}\,|\,y_{1:n}) 
+  p(u_{k}\,|\,y_{1:n})
   &\approx \sum_{i} w^{(i)}_{k|n} \, \delta(u_{k} - u_{k}^{(i)}),
 \end{split}
 \end{equation}
@@ -1408,7 +1292,7 @@ FGS    & 0.26 & 0.13 & 0.12 \\ \hline
 
 \begin{figure}[htb!]
 \begin{center}
-\includegraphics[width=0.45\textwidth]{fig100_rmse}
+%\includegraphics[width=0.45\textwidth]{fig100_rmse}
 \end{center}
 \caption{RMSEs with 100 particles averaged over 1000 runs.}
 \label{fig:100_rmse}
@@ -1416,7 +1300,7 @@ FGS    & 0.26 & 0.13 & 0.12 \\ \hline
 
 \begin{figure}[htb!]
 \begin{center}
-\includegraphics[width=0.45\textwidth]{fig100_err}
+%\includegraphics[width=0.45\textwidth]{fig100_err}
 \end{center}
 \caption{Error rates with 100 particles averaged over 1000 runs.}
 \label{fig:100_err}
@@ -1424,7 +1308,7 @@ FGS    & 0.26 & 0.13 & 0.12 \\ \hline
 
 \begin{figure}[htb!]
 \begin{center}
-\includegraphics[width=0.45\textwidth]{fig100_errp}
+%\includegraphics[width=0.45\textwidth]{fig100_errp}
 \end{center}
 \caption{Predicted error rates with 100 particles averaged over 1000
   runs.}
@@ -1470,7 +1354,7 @@ in the Figure \ref{fig:10_rmse}.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.45\textwidth]{fig10_rmse}
+%\includegraphics[width=0.45\textwidth]{fig10_rmse}
 \end{center}
 \caption{RMSEs with 10 particles averaged over 1000 runs.}
 \label{fig:10_rmse}
@@ -1478,7 +1362,7 @@ in the Figure \ref{fig:10_rmse}.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.35\textwidth]{fig10_err}
+%\includegraphics[width=0.35\textwidth]{fig10_err}
 \end{center}
 \caption{Error rates with 10 particles averaged over 1000 runs.}
 \label{fig:10_err}
@@ -1486,7 +1370,7 @@ in the Figure \ref{fig:10_rmse}.
 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=0.35\textwidth]{fig10_errp}
+%\includegraphics[width=0.35\textwidth]{fig10_errp}
 \end{center}
 \caption{Predicted error rates with 10 particles averaged over 1000
   runs.}
@@ -1517,33 +1401,33 @@ attempting to compare to other methods?}
 \comment{Acknowledgements here}
 \end{ack}
 
-\bibliographystyle{plain}        % Include this if you use bibtex 
-\bibliography{rb-smoother}       % and a bib file to produce the 
+\bibliographystyle{plain}        % Include this if you use bibtex
+\bibliography{rb-smoother}       % and a bib file to produce the
                                  % bibliography (preferred). The
                                  % correct style is generated by
                                  % Elsevier at the time of printing.
 
-%\begin{thebibliography}{99}     % Otherwise use the  
+%\begin{thebibliography}{99}     % Otherwise use the
                                  % thebibliography environment.
                                  % Insert the full references here.
-                                 % See a recent issue of Automatica 
+                                 % See a recent issue of Automatica
                                  % for the style.
 %  \bibitem[Heritage, 1992]{Heritage:92}
-%     (1992) {\it The American Heritage. 
+%     (1992) {\it The American Heritage.
 %     Dictionary of the American Language.}
 %     Houghton Mifflin Company.
 %  \bibitem[Able, 1956]{Abl:56}
-%     B.~C.~Able (1956). Nucleic acid content of macroscope. 
-%     {\it Nature 2}, 7--9. 
-%  \bibitem[Able {\em et al.}, 1954]{AbTaRu:54}   
+%     B.~C.~Able (1956). Nucleic acid content of macroscope.
+%     {\it Nature 2}, 7--9.
+%  \bibitem[Able {\em et al.}, 1954]{AbTaRu:54}
 %     B.~C. Able, R.~A. Tagg, and M.~Rush (1954).
 %     Enzyme-catalyzed cellular transanimations.
-%     In A.~F.~Round, editor, 
-%     {\it Advances in Enzymology Vol. 2} (125--247). 
+%     In A.~F.~Round, editor,
+%     {\it Advances in Enzymology Vol. 2} (125--247).
 %     New York, Academic Press.
 %  \bibitem[R.~Keohane, 1958]{Keo:58}
 %     R.~Keohane (1958).
-%     {\it Power and Interdependence: 
+%     {\it Power and Interdependence:
 %     World Politics in Transition.}
 %     Boston, Little, Brown \& Co.
 %  \bibitem[Powers, 1985]{Pow:85}
@@ -1555,7 +1439,7 @@ attempting to compare to other methods?}
 
 %\appendix
 %\section{A summary of Latin grammar}    % Each appendix must have a short title.
-%\section{Some Latin vocabulary}         % Sections and subsections are supported  
+%\section{Some Latin vocabulary}         % Sections and subsections are supported
                                         % in the appendices.
 
-\end{document}
+\end{document} 
