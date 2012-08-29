@@ -492,9 +492,9 @@ The computational complexity of the method is $O(M\,N^2)$, that is, the same as 
 
 \section{Algorithms for Rao-Blackwellised Particle Smoothing}
 
-\subsection{Existing Approaches to RBPS}
-%
-Although the generic particle filters and smoothers can be used in almost any kind of models, the required number of samples for a sufficient accuracy can be high. The efficiency of sampling can be improved by Rao-Blackwellisation \cite{Doucet+Godsill+Andrieu:2000,Chen+Liu:2000}, where part of the state is marginalised out in closed form, and only the remaining part is sampled. Because the sampled space has a lower dimension, fewer particles are required. Such closed form marginalization is possible, for example, in conditionally linear Gaussian models in Equations \eqref{eq:condgauss}.
+Although the generic particle filters and smoothers can be used in almost any kind of models, the required number of samples for a sufficient accuracy can be high. The efficiency of sampling can be improved by Rao-Blackwellisation \cite{Doucet+Godsill+Andrieu:2000,Chen+Liu:2000}, where part of the state is marginalised out in closed form, and only the remaining part is sampled. Because the sampled space has a lower dimension, fewer particles are required. Such closed-form marginalisation is possible, for example, in the conditionally linear Gaussian models of Equations \eqref{eq:condgauss}.
+
+\subsubsection{Rao-Blackwellised Filter/Smoother}
 
 The Rao-Blackwellised particle filter (RBPF) \cite{Doucet+Godsill+Andrieu:2000,Chen+Liu:2000} is the algorithm which results if we marginalise the linear state $z_k$ from the conditionally linear Gaussian model \eqref{eq:condgauss}, and use SIR for the non-Gaussian part $u_k$ only. At each step the approximation to the filtering density is a mixture of Gaussians,
 %
@@ -591,7 +591,115 @@ $u_{0:k}^{(i)}$.
 \end{itemize}
 \end{algo}
 %
-The Rao-Blackwellised particle smoother in this simple form also has the same disadvantage as the SIR particle smoother, that is, the smoothed estimate of $u_{k}$ can be quite degenerate if $M \gg k$. Fortunately, the smoothed estimates of the linear states $z_k$ can still be relatively good, because their degeneracy is avoided by Rao-Blackwellisation.
+The Rao-Blackwellised particle smoother in this simple form also has the same disadvantage as the SIR particle smoother, that is, the smoothed estimate of $u_{k}$ can be quite degenerate if $M \gg k$. Fortunately, the smoothed estimates of the linear states $z_k$ can still be relatively good, because their degeneracy is avoided by Rao-Blackwellisation. \comment{I think this is a dubious statement. If it were true, why are we bothering? It definitely isn't true for multi-modal joint smoothing distributions (where there is more than one distinct possible path).}
+
+
+
+\subsection{Rao-Blackwellised Backward Simulation Smoothers}
+%
+In the Rao-Blackwellised case, we cannot do backward simulation just by drawing samples $u_k^{(i)}$ one step at a time from the filter results (as in Algorithm \ref{alg:bssmooth}), because the linear part of the state (and thus the likelihood of the measurements) depends on the entire history $u^{(i)}_{1:k}$. Furthermore, the marginalised state $u_k$ does not have the same simple Markov property as the full state,
+%
+\begin{equation}
+  \begin{split}
+    p(u_{k}\,|\,u_{k+1},y_{1:M})
+    &\ne p(u_{k}\,|\,u_{k+1},y_{1:k}),
+  \end{split}
+  \nonumber
+\end{equation}
+%
+and thus we need to condition on the whole future instead of just on
+the next time step. Rather than just $u^{(i)}_{k}$, we must calculate weights for each filtering
+trajectory, $u^{(i)}_{1:k}$, when it is paired with the sampled
+(fixed) future state sequence, $\tilde{u}_{k+1:M}$.
+
+\subsubsection{Using Kim's Approximation}
+%
+The crudest way to implement a RB backward simulation smoother is simply to neglect the dependence on future observations and then use the same reasoning as that for (\ref{eq:backsimeq}) with the $x$s replaced by $u$s. This heuristic idea is called {\em Kim's approximation} \cite{Kim:1994,Barber:2006} and more formally it results from
+%
+\begin{equation}
+\begin{split}
+ &p(u_{k} \,|\, u_{k+1:n},y_{1:n}) \\
+% &= \int p(u_{k} \,|\, u_{k+1},z_{k+1},y_{1:k}) \,
+%         p(z_{k+1} \,|\, u_{k+1},y_{1:n}) \, dz_{k+1} \\
+  &\approx p(u_{k} \,|\, u_{k+1},y_{1:k}).
+\end{split}
+\end{equation}
+%
+In other words, we smooth the non-Gaussian variables $u_k$ by ignoring the effect of Gaussian variables $z_k$ completely. We get an algorithm which amounts to replacing the transition density $p(x_{k+1}\,|\,x_{k})$ in Algorithm \ref{alg:bssmooth} with only the nonlinear transition density $p(u_{k+1}\,|\,u_{k})$. Given a trajectory of the non-Gaussian variable, the linear Gaussian part may be estimated an RTS smoother.
+
+\begin{algo}[Kim's approximation backward simulation smoother]
+  \label{alg:rbbssmooth}
+  Given the weighted set of particles $\{ w_k^{(i)}, u_{1:k}^{(i)} ~|~
+  i=1,\ldots,N,~k=1,\ldots,M \}$ representing the filtering results
+  and their histories at different times:
+\begin{itemize}
+\item Choose $\tilde{u}_M = u_M^{(i)}$ with probability $w^{(i)}_{M}$.
+\item For $k=M-1,\ldots,0$:
+\begin{enumerate}
+  \item Compute new weights by
+    \begin{equation}
+      \begin{split}
+        w^{(i)}_{k|k+1} &\propto
+        w_k^{(i)} \,
+        p(\tilde{u}_{k+1}\,|\,u_{k}^{(i)}),
+     \end{split}
+    \end{equation}
+    %
+
+  \item Choose $\tilde{u}_k = u_k^{(i)}$ with probability
+    $w^{(i)}_{k|k+1}$.
+  \end{enumerate}
+\item The smoothing solution to the linear part can be computed by running a Kalman filter and RTS smoother over the generated trajectory $\tilde{u}_{1:M}$.
+\end{itemize}
+%
+Given $S$ iterations of the above procedure resulting in samples $\tilde{u}_{1:n}^{(j)}$ for $j=1,\ldots,S$ as well as the corresponding smoother means and covariances $m^{s,(j)}_{1:n}$, $P^{s,(j)}_{1:n}$, the smoothing distribution can be approximated as
+%
+\begin{equation}
+  p(u_k,z_k\,|\,y_{1:n})
+  = \frac{1}{S} \sum_j \mathrm{N}(z_k\,|\,m_k^{s,(j)},P_k^{s,(j)}) \,
+  \delta(u_k - \tilde{u}_k^{(j)}).
+\nonumber
+\end{equation}
+\end{algo}
+
+%By comparing the Equations \eqref{eq:rbbacksimeq} and \eqref{eq:simplerbrw} to the Equations \eqref{eq:backsimeq} and \eqref{eq:rw}, respectively, it is easy to see that the Rao-Blackwellization only brings in a few additional Gaussian terms. It would be tempting to simply ignore those additional terms and hope that the result still is accurate enough.
+
+\subsubsection{Sampling the linear state}
+%
+Improved Rao-Blackwellised smoothing algorithms were presented by \cite{Fong+Godsill+Doucet+West:2002,Lindsten+Schon:2011}. These draw samples from the smoothing distribution of the nonlinear state, $p(u_{1:M} | y_{1:M})$, by augmenting the distribution with the linear state components and sampling linear and nonlinear states alternately.
+
+By introducing the linear state sampling, we can exploit the Markov property in the same manner as the non-Rao-Blackwellised smoother. Supposing a future state trajectory, $\{ \tilde{u}_{k+1:M}, \tilde{z}_{k+1:M} \}$ have already been sampled. We would then like to sample,
+%
+\begin{equation}
+\begin{split}
+  &p(u_{1:k}\,|\,\tilde{u}_{k+1:M}, \tilde{z}_{k+1:M},y_{1:M}) \\
+  &= p(u_{1:k}\,|\,\tilde{u}_{k+1},\tilde{z}_{k+1},y_{1:k}) \\
+  &= \frac{ p(\tilde{u}_{k+1}, \tilde{z}_{k+1} | u_{1:k}, y_{1:k}) p(u_{1:k}|y_{1:k}) }{ p(\tilde{u}_{k+1}, \tilde{z}_{k+1} | y_{1:k}) } \\
+  &\propto p(\tilde{z}_{k+1} | u_{1:k}, \tilde{u}_{k+1}, y_{1:k}) p(\tilde{u}_{k+1} | u_k) p(u_{1:k}|y_{1:k})     .
+\end{split}
+\end{equation}
+
+Substituting the RBPF approximation for the filtering density gives us,
+%
+\begin{equation}
+\begin{split}
+  &p(u_{1:k}\,|\,\tilde{u}_{k+1:M},z_{k+1},y_{1:M}) \\
+  &\approx \sum_i w_k^{(i)} p(\tilde{u}_{k+1} | u_k^{(i)}) p(\tilde{z}_{k+1} | u_{1:k}^{(i)}, \tilde{u}_{k+1}, y_{1:k})    .
+\end{split}
+\end{equation}
+
+The final term is given by a Kalman filter prediction step using the Gaussian moments from the the $i$th filtering particle. Hence, we can sample from this distribution by sampling $u_{1:k}^{(i)}$ with probability $\propto w_k^{(i)} p(\tilde{u}_{k+1} | u_k^{(i)}) \mathrm{N}(\tilde{z}_{k+1}\,|\, m^{-(i)}_{k+1}, P^{-(i)}_{k+1})$, where,
+%
+\begin{equation}
+\begin{split}
+ m^{-(i)}_{k+1} &= A(\tilde{u}_{k+1}) \, m^{(i)}_{k} \\
+ P^{-(i)}_{k+1} &= A(\tilde{u}_{k+1}) \, P^{(i)}_{k} A(\tilde{u}_{k+1})^T + Q(\tilde{u}_{k+1})     .
+\end{split}
+\end{equation}
+
+In the second stage, we sample the linear state component. 
+
+A
 
 \comment{Fong et al. smoother}
 
@@ -599,29 +707,13 @@ The Rao-Blackwellised particle smoother in this simple form also has the same di
 
 \comment{RB Two-filter approaches}
 
-\subsection{Backward Simulation Based RBPS}
-%
-In the Rao-Blackwellized case, we cannot do backward simulation just
-by drawing samples $u_k^{(i)}$ one step at a time from the filter
-results (as in Algorithm \ref{alg:bssmooth}), because the linear part
-of the state (and thus the likelihood of the measurements) depends on
-the entire history $u^{(i)}_{1:k}$. Thus we need to sample whole
-trajectories from the sample histories produced by RB
-filter/smoother. Furthermore, the marginalized state $u_k$ does not
-have the same simple Markov property as the full state:
-%
-\begin{equation}
-  \begin{split}
-    p(u_{k}\,|\,u_{k+1},y_{1:M})
-    &\ne p(u_{k}\,|\,u_{k+1},y_{1:k}).
-  \end{split}
-  \nonumber
-\end{equation}
-%
-and thus we need to condition on the whole future instead of just on
-the next time step. Thus, we must calculate weights for each filtering
-trajectory, $u^{(i)}_{1:k}$, when it is paired with the sampled
-(fixed) future state sequence, $\tilde{u}_{k+1:M}$.
+
+
+
+
+Thus we need to sample whole trajectories from the sample histories produced by RB filter/smoother. 
+
+
 
 In order to do backward sampling for $u_{1:M}$, we will need an
 efficient way to evaluate the following distribution for different
@@ -1065,33 +1157,7 @@ matching procedure.
 
 \subsection{Kim's Approximation Based RBPS}
 %
-By comparing the Equations \eqref{eq:rbbacksimeq} and
-\eqref{eq:simplerbrw} to the Equations \eqref{eq:backsimeq} and
-\eqref{eq:rw}, respectively, it is easy to see that the
-Rao-Blackwellization only brings in a few additional Gaussian
-terms. It would be tempting to simply ignore those additional
-terms and hope that the result still is accurate enough.
-This heuristic idea is called {\em Kim's approximation}
-\cite{Kim:1994,Barber:2006} and more formally it results from
-%
-\begin{equation}
-\begin{split}
- &p(u_{k} \,|\, u_{k+1:n},y_{1:n}) \\
- &= \int p(u_{k} \,|\, u_{k+1},z_{k+1},y_{1:k}) \,
-         p(z_{k+1} \,|\, u_{k+1},y_{1:n}) \, dz_{k+1} \\
-  &\approx p(u_{k} \,|\, u_{k+1},y_{1:k}).
-\end{split}
-\end{equation}
-%
-In other words, we smooth the non-Gaussian variables $u_k$ by ignoring
-the effect of Gaussian variables $z_k$ completely. Thus if we ignored
-those, we would get an algorithm while amounts to replacing the
-transition density $p(x_{k+1}\,|\,x_{k})$ in the Algorithm
-\ref{alg:bssmooth} with $p(u_{k+1}\,|\,u_{k})$. Given a trajectory of
-the non-Gaussian variable, the linear Gaussian part may be estimated
-with Kalman filter and RTS smoother.
 
-\comment{Algorithm about here}
 
 In the reweighting smoother case Kim's approximation can indeed by
 used for compute the weights for the representations
