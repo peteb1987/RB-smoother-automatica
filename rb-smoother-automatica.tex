@@ -1,37 +1,4 @@
-% autosam.tex
-% Annotated sample file for the preparation of LaTeX files
-% for the final versions of papers submitted to or accepted for
-% publication in AUTOMATICA.
-
-% See also the Information for Authors.
-
-% Make sure that the zip file that you send contains all the
-% files, including the files for the figures and the bib file.
-
-% Output produced with the elsart style file does not imitate the
-% AUTOMATICA style. The style file is generic for all Elsevier
-% journals and the output is laid out for easy copy editing. The
-% final document is produced from the source file in the
-% AUTOMATICA style at Elsevier.
-
-% You may use the style file autart.cls to obtain a two-column
-% document (see below) that more or less imitates the printed
-% Automatica style. This may helpful to improve the formatting
-% of the equations, tables and figures, and also serves to check
-% whether the paper satisfies the length requirements.
-
-% Please note: Authors must not create their own macros.
-
-% For further information regarding the preparation of LaTeX files
-% for Elsevier, please refer to the "Full Instructions to Authors"
-% from Elsevier's anonymous ftp server on ftp.elsevier.nl in the
-% directory pub/styles, or from the internet (CTAN sites) on
-% ftp.shsu.edu, ftp.dante.de and ftp.tex.ac.uk in the directory
-% tex-archive/macros/latex/contrib/supported/elsevier.
-
-
-%\documentclass{elsart}               % The use of LaTeX2e is preferred.
-
+%\documentclass{elsart}
 \documentclass[twocolumn]{autart}    % Enable this line and disable the
                                      % preceding line to obtain a two-column
                                      % document whose style resembles the
@@ -51,35 +18,9 @@
 \begin{document}
 
 \begin{frontmatter}
-%\runtitle{Insert a suggested running title}  % Running title for regular
-                                              % papers but only if the title
-                                              % is over 5 words. Running title
-                                              % is not shown in output.
 
-%\title{In Catilinam IV\thanksref{footnoteinfo}} % Title, preferably not more
-                                                % than 10 words.
-
-%\thanks[footnoteinfo]{This paper was not presented at any IFAC
-%meeting. Corresponding author M.~T.~Cicero. Tel. +XXXIX-VI-mmmxxi.
-%Fax +XXXIX-VI-mmmxxv.}
-
-%\author[Paestum]{Marcus Tullius Cicero}\ead{cicero@senate.ir},    % Add the
-%\author[Rome]{Julius Caesar}\ead{julius@caesar.ir},               % e-mail address
-%\author[Baiae]{Publius Maro Vergilius}\ead{vergilius@culture.ir}  % (ead) as shown
-
-%\address[Paestum]{Buckingham Palace, Paestum}  % Please supply
-%\address[Rome]{Senate House, Rome}             % full addresses
-%\address[Baiae]{The White House, Baiae}        % here.
-
-
-%\begin{keyword}                           % Five to ten keywords,
-%Cicero; Catiline; orations.               % chosen from the IFAC
-%\end{keyword}                             % keyword list or with the
-                                          % help of the Automatica
-                                          % keyword wizard
-
-\title{Rao-Blackwellised Particle Smoothing for
-Conditionally Linear Gaussian Models}
+\runtitle{Rao-Blackwellised Particle Smoothing}
+\title{Rao-Blackwellised Particle Smoothing for Conditionally Linear Gaussian Models}
 
 %\thanksref{footnoteinfo}
 %\thanks[footnoteinfo]{This work was supported in part by the XXX.}
@@ -93,7 +34,6 @@ Conditionally Linear Gaussian Models}
 \address[Second]{University of Cambridge, Department of Engineering, Trumpington Street, Cambridge CB2 1PZ, UK (e-mail: pb404@cam.ac.uk)}
 \address[Third]{University of Cambridge, Department of Engineering, Trumpington Street, Cambridge CB2 1PZ, UK (e-mail: sjg@cam.ac.uk)}
 
-
 \begin{keyword}
 estimation algorithms; optimal estimation; nonlinear systems;
 Monte Carlo method; stochastic systems.
@@ -105,24 +45,19 @@ Abstract is here.
 
 \end{frontmatter}
 
+
+
 \section{Introduction}
 %
-\comment{Something about particle filtering and its efficiency as well asmotivation of Rao-Blackwellisation}
+\comment{Something about particle filtering and its efficiency as well as motivation of Rao-Blackwellisation}
 
-\comment{Comment something about the conference article
-  \cite{Sarkka+Bunch+Godsill:2012}}
+\comment{Comment something about the conference article \cite{Sarkka+Bunch+Godsill:2012}}
 
 \comment{Contributions of this article here}
 
 The structure of the paper is as follows: \ldots
 
-%\begin{figure}
-%\begin{center}
-%\includegraphics[height=4cm]{jcaesar.eps}    % The printed column
-%\caption{Gaius Julius Caesar, 100--44 B.C.}  % width is 8.4 cm.
-%\label{fig1}                                 % Size the figures
-%\end{center}                                 % accordingly.
-%\end{figure}
+
 
 \subsection{Problem Formulation}
 %
@@ -176,7 +111,7 @@ In the linear Gaussian case, these equations have a closed form solution, which 
 The {\em Bayesian smoothing} solutions to such probabilistic state space models can be divided into (1) two-filter smoothers (2) forward-backward smoothers:
 %
 \begin{enumerate}
-\item {\em The two-filter} smoother \cite{Lee:1964,Kitagawa:1994} can be interpreted as a combination of forward and backward Bayesian filters,
+\item {\em The two-filter smoothing} algorithm \cite{Lee:1964,Kitagawa:1994} can be interpreted as a combination of forward and backward Bayesian filters,
 %
 \begin{equation}
 \begin{split}
@@ -484,14 +419,16 @@ Thus we get the following algorithm.
 %
 The computational complexity of the method is $O(M\,N^2)$, that is, the same as of the backward-simulation smoother with $S = N$ simulated trajectories.
 
-
 \comment{Here will be a short explanation of two filter based particle
   smoothers}
+
 
 
 \section{Algorithms for Rao-Blackwellised Particle Smoothing}
 
 Although the generic particle filters and smoothers can be used in almost any kind of models, the required number of samples for a sufficient accuracy can be high. The efficiency of sampling can be improved by Rao-Blackwellisation \cite{Doucet+Godsill+Andrieu:2000,Chen+Liu:2000}, where part of the state is marginalised out in closed form, and only the remaining part is sampled. Because the sampled space has a lower dimension, fewer particles are required. Such closed-form marginalisation is possible, for example, in the conditionally linear Gaussian models of Equations \eqref{eq:condgauss}.
+
+
 
 \subsection{Rao-Blackwellised Filter/Smoother}
 
@@ -590,12 +527,15 @@ $u_{0:k}^{(i)}$.
 \end{itemize}
 \end{algo}
 %
-The Rao-Blackwellised particle smoother in this simple form also has the same disadvantage as the SIR particle smoother, that is, the smoothed estimate of $u_{k}$ can be quite degenerate if $M \gg k$. Fortunately, the smoothed estimates of the linear states $z_k$ can still be relatively good, because their degeneracy is avoided by Rao-Blackwellisation. \comment{I think this is a dubious statement. If it were true, why are we bothering? It definitely isn't true for multi-modal joint smoothing distributions (where there is more than one distinct possible path).}
+The Rao-Blackwellised particle smoother in this simple form also has the same disadvantage as the SIR particle smoother, that is, the smoothed estimate of $u_{k}$ can be quite degenerate if $M \gg k$.
+
 
 
 \subsection{Rao-Blackwellised Two Filter Smoothers}
 
 \comment{RB Two-filter approaches - Brier \& co.}
+
+
 
 \subsection{Rao-Blackwellised Backward Simulation Smoothers}
 %
@@ -610,6 +550,8 @@ In the Rao-Blackwellised case, we cannot do backward simulation just by drawing 
 \end{equation}
 %
 and thus we need to condition on the whole future instead of just on the next time step. Rather than just $u^{(i)}_{k}$, we must calculate weights for each filtering trajectory, $u^{(i)}_{0:k}$, when it is paired with the sampled (fixed) future state sequence, $\tilde{u}_{k+1:M}$.
+
+
 
 \subsubsection{Using Kim's Approximation}
 %
@@ -662,6 +604,8 @@ Given $S$ iterations of the above procedure resulting in samples $\tilde{u}_{1:n
 \end{algo}
 
 %By comparing the Equations \eqref{eq:rbbacksimeq} and \eqref{eq:simplerbrw} to the Equations \eqref{eq:backsimeq} and \eqref{eq:rw}, respectively, it is easy to see that the Rao-Blackwellization only brings in a few additional Gaussian terms. It would be tempting to simply ignore those additional terms and hope that the result still is accurate enough.
+
+
 
 \subsubsection{Sampling the linear state}
 %
@@ -737,9 +681,9 @@ This will be a Gaussian and its form is akin to a Kalman filter update,
 %
 \begin{equation}
 \begin{split}
-  T_{k+1}^{(i)} &= ( A(\tilde{u}_{k+1}) P_k^{(i)} A(\tilde{u}_{k+1})^T + Q(\tilde{u}_{k+1}) )^{-1} \\
-  \tilde{m}_k &= m_k^{(i)} + P_k^{(i)} A(\tilde{u}_{k+1})^T T_{k+1}^{(i)} (\tilde{z}_{k+1} - A(\tilde{u}_{k+1}) m_k^{(i)} ) \\
-  \tilde{P}_k &= P_k^{(i)} - P_k^{(i)} A(\tilde{u}_{k+1})^T T_{k+1}^{(i)} A(\tilde{u}_{k+1}) P_k^{(i)}
+  T_{k+1}^{(i)} &= ( A(\tilde{u}_{k+1}) P_k^{(i)} A(\tilde{u}_{k+1})^T + Q(\tilde{u}_{k+1}) ) \\
+  \tilde{m}_k &= m_k^{(i)} + P_k^{(i)} A(\tilde{u}_{k+1})^T T_{k+1}^{(i)-1} (\tilde{z}_{k+1} - A(\tilde{u}_{k+1}) m_k^{(i)} ) \\
+  \tilde{P}_k &= P_k^{(i)} - P_k^{(i)} A(\tilde{u}_{k+1})^T T_{k+1}^{(i)-1} A(\tilde{u}_{k+1}) P_k^{(i)}
 \end{split}
 \label{eq:linsamplinupd}
 \end{equation}
@@ -811,7 +755,8 @@ We can split up the dependency between the past and future by augmenting the dis
 \begin{split}
   & p(u_{0:M}\,|\,y_{1:M}) = \int p(u_{0:M}, z_k \,|\,y_{1:M}) dz_k \\
   &= \int \frac{ p(y_{k+1:M} | u_{0:M}, z_k) p(u_{0:M}, z_k | y_{1:k}) }{ p(y_{k+1:M} | y_{1:k}) } dz_k \\
-  &\propto p(u_{0:k} | y_{1:k}) p(u_{k+1} | u_{k}) \int p(y_{k+1:M} | u_{0:M}, z_k) p(z_k | u_{0:k}, y_{1:k}) dz_k    ,
+  &\propto p(u_{0:k} | y_{1:k}) p(u_{k+1} | u_{k}) \\
+  & \qquad \int p(y_{k+1:M} | u_{0:M}, z_k) p(z_k | u_{0:k}, y_{1:k}) dz_k    ,
 \end{split}
 \label{eq:split}
 \end{equation}
@@ -1037,7 +982,8 @@ Finally, we recognise the first term in \eqref{eq:split} as the nonlinear state 
 \begin{equation}
 \begin{split}
   &p(u_{0:k}\,|\,u_{k+1:M},y_{1:M}) = \sum_i w_{k|k+1}^{(i)} \delta(u_{0:k} - u^{(i)}_{0:k}) \\
-  &w_{k|k+1}^{(i)} \propto w^{(i)}_k |\det A(u_{k+1})|^{-1} \mathrm{N}(m_k^{(i)}\,|\,m^{-b}_{k},P_k^{(i)}+P^{-b}_{k}) \, p(u_{k+1}\,|\,u_{k})
+  &w_{k|k+1}^{(i)} \propto w^{(i)}_k |\det A(u_{k+1})|^{-1} \\
+  & \qquad \mathrm{N}(m_k^{(i)}\,|\,m^{-b}_{k},P_k^{(i)}+P^{-b}_{k}) \, p(u_{k+1}\,|\,u_{k})
 \end{split}
 \label{eq:rbbacksimeq}
 \end{equation}
@@ -1054,7 +1000,8 @@ The final algorithm is the following.
   \item Compute new weights by
     \begin{equation}
       \begin{split}
-        w_{k|k+1}^{(i)} \propto w^{(i)}_k |\det A(u_{k+1})|^{-1} \mathrm{N}(m_k^{(i)}\,|\,m^{-b}_{k},P_k^{(i)}+P^{-b}_{k}) \, p(u_{k+1}\,|\,u_{k}^{(i)})
+        & w_{k|k+1}^{(i)} \propto w^{(i)}_k |\det A(u_{k+1})|^{-1} \\
+        & \qquad \mathrm{N}(m_k^{(i)}\,|\,m^{-b}_{k},P_k^{(i)}+P^{-b}_{k}) \, p(u_{k+1}\,|\,u_{k}^{(i)})
      \end{split}
     \end{equation}
     %
@@ -1072,6 +1019,7 @@ Given $S$ iterations of the above procedure resulting in samples $\tilde{u}_{0:M
 \nonumber
 \end{equation}
 \end{algo}
+
 
 
 \subsection{Rao-Blackwellised Reweighting Smoothers}
@@ -1246,6 +1194,7 @@ Note that while Kim's approximation could be used to formulate a reweighting-typ
 %their applicability seems to be quite limited.
 
 
+
 \section{Computational Considerations}
 
 \subsection{Initialization of Backward Simulation Recursion}
@@ -1317,7 +1266,8 @@ This inversion to initialise the backwards filter may be effected once $\Gamma_{
 \begin{equation}
 \begin{split}
   &\int p(y_{k+1:M} | u_{k+1:M}, z_k) p(z_k | u_{0:k}, y_{1:k}) dz_{k+1} \\
-  &= \int \int p(y_{k+1:M} | u_{k+1:M}, z_{k+1}) p(z_{k+1} | u_{k+1}, z_{k}) dz_k p(z_k | u_{0:k}, y_{1:k}) dz_{k+1} \\
+  &= \int \int p(y_{k+1:M} | u_{k+1:M}, z_{k+1}) p(z_{k+1} | u_{k+1}, z_{k}) dz_k\\
+  & \qquad p(z_k | u_{0:k}, y_{1:k}) dz_{k+1} \\
   &= \mathrm{N}( \mathbf{y}_{k+1:M} | \xi_{k+1} , \Lambda_{k+1} )     ,
 \end{split}
 \end{equation}
@@ -1350,6 +1300,8 @@ Although all the backwards simulation smoothers technically sample $u_{1:k}$ at 
 In order to conduct backwards simulation smoothing for one time step of one trajectory, it is necessary to calculate the weight, $w_{k|k+1}^{(i)}$ for each of the $N$ filtering trajectories. Hence, to simulate $S$ trajectories, the computational complexity is $O(NMS)$. If we desire $S$ to be large, of the same order as $N$, then these methods are quadratic in the number of particles, which is limiting.
 
 Note that while both the linear sampling and fully Rao-Blackwellised smoothers both have the same complexity scaling, the fully Rao-Blackwellised form is still faster by a scale factor. This is because the weight calculations require only one backwards Kalman filter step to be run for the sampled future, while the linear sampling version requires $N$ forward Kalman filter predictions to be made.
+
+
 
 \subsubsection{Reweighting smoother}
 
@@ -1384,8 +1336,10 @@ where $\eta_k$ is a bound on the maximum value of $\frac{ w_{k|k+1}^{(i)} }{ w_k
 \begin{equation}
 \begin{split}
   & \frac{ w_{k|k+1}^{(i)} }{ w_k^{(i)} } \\
-  & = \max_i( |\det A(u_{k+1})|^{-1} p(u_{k+1} | u_{k}^{(i)}) \mathrm{N}(m_k^{(i)}\,|\,m^{-b}_{k},P_k^{(i)}+P^{-b}_{k})) \\
-  & \le |\det A(u_{k+1})|^{-1} \max_{u_k}( p(\tilde{u}_{k+1} | u_k) ) \max_{m_k,P_k}( \mathrm{N}(m_k | m^{-b}_{k},P_k+P^{-b}_{k}) ) \\
+  & = \max_i( |\det A(u_{k+1})|^{-1} p(u_{k+1} | u_{k}^{(i)}) \\
+  & \qquad \qquad \mathrm{N}(m_k^{(i)}\,|\,m^{-b}_{k},P_k^{(i)}+P^{-b}_{k})) \\
+  & \le |\det A(u_{k+1})|^{-1} \max_{u_k}( p(\tilde{u}_{k+1} | u_k) ) \\
+  & \qquad \qquad \max_{m_k,P_k}( \mathrm{N}(m_k | m^{-b}_{k},P_k+P^{-b}_{k}) ) \\
   & = |\det A(u_{k+1})|^{-1} \max_{u_k}( p(\tilde{u}_{k+1} | u_k) ) |\det(2 \pi P^{-b}_{k})|^{-\frac{1}{2}} 
 \end{split}
 \end{equation}
@@ -1438,11 +1392,12 @@ When using this Metropolis-Hastings sampling, the memory requirements are higher
 \comment{Including the state to latent variable equation as in the
   methods of Lindsten \& co.}
 
+
+
 \subsection{Approximate Rao-Blackwellisation}
 
 \comment{Approximate Rao-Blackwellisation by replacing Kalman/RTS
 with their non-linear counterparts.}
-
 
 
 
@@ -1455,6 +1410,8 @@ with their non-linear counterparts.}
 \comment{Proof that the error of this backward simulation
 is smaller than in the approaches of Fong and Lindsten/Sch\"on}
 
+
+
 \subsection{Analysis of Reweighting}
 
 \comment{Proof that the method samples with the right distribution
@@ -1462,13 +1419,38 @@ in the limit of infinite number of particles (if it does)}
 
 \comment{Analyse the approximation with finite number of particles}
 
+
+
 \subsection{Analysis of Kim's Approximation}
 
 \comment{Theoretical analysis of accuracy as compared to the full
   approach}
 
 
-\section{Numerical Results}
+
+\section{Numerical Testing}
+
+The various Rao-Blackwellised smoothing algorithms have been tested on a number of models with a variety of linear and nonlinear dynamics. Here we present an illustrative example.
+
+\comment{
+Which model shall I put in? What do we actually want to demonstrate with these tests?
+I currently have results which demonstrate the following:
+\begin{itemize}
+  \item All the backward simulation smoothers (BSSs) outperform the filter/smoother.
+  \item The Kim's approximation BSS is not as good as the exact forms.
+  \item The linear sampling and fully RB BSSs produce virtually identical results.
+\end{itemize}
+What we'd like to be able to show, but can't (yet):
+\begin{itemize}
+  \item Situations in which the fully RB BSS outperforms the linear sampling version.
+  \item How the reweighting smoother compares.
+  \item How the Briers \& co two-filter smoother compares.
+\end{itemize}
+}
+
+
+
+
 
 \subsection{Simple Switching Linear Model}
 %
@@ -1685,39 +1667,19 @@ attempting to compare to other methods?}
                                  % correct style is generated by
                                  % Elsevier at the time of printing.
 
-%\begin{thebibliography}{99}     % Otherwise use the
-                                 % thebibliography environment.
-                                 % Insert the full references here.
-                                 % See a recent issue of Automatica
-                                 % for the style.
-%  \bibitem[Heritage, 1992]{Heritage:92}
-%     (1992) {\it The American Heritage.
-%     Dictionary of the American Language.}
-%     Houghton Mifflin Company.
-%  \bibitem[Able, 1956]{Abl:56}
-%     B.~C.~Able (1956). Nucleic acid content of macroscope.
-%     {\it Nature 2}, 7--9.
-%  \bibitem[Able {\em et al.}, 1954]{AbTaRu:54}
-%     B.~C. Able, R.~A. Tagg, and M.~Rush (1954).
-%     Enzyme-catalyzed cellular transanimations.
-%     In A.~F.~Round, editor,
-%     {\it Advances in Enzymology Vol. 2} (125--247).
-%     New York, Academic Press.
-%  \bibitem[R.~Keohane, 1958]{Keo:58}
-%     R.~Keohane (1958).
-%     {\it Power and Interdependence:
-%     World Politics in Transition.}
-%     Boston, Little, Brown \& Co.
-%  \bibitem[Powers, 1985]{Pow:85}
-%     T.~Powers (1985).
-%     Is there a way out?
-%     {\it Harpers, June 1985}, 35--47.
-
-%\end{thebibliography}
-
 %\appendix
 %\section{A summary of Latin grammar}    % Each appendix must have a short title.
 %\section{Some Latin vocabulary}         % Sections and subsections are supported
                                         % in the appendices.
 
 \end{document} 
+
+
+
+%\begin{figure}
+%\begin{center}
+%\includegraphics[height=4cm]{jcaesar.eps}    % The printed column
+%\caption{Gaius Julius Caesar, 100--44 B.C.}  % width is 8.4 cm.
+%\label{fig1}                                 % Size the figures
+%\end{center}                                 % accordingly.
+%\end{figure}
