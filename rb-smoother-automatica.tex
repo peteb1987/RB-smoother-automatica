@@ -600,7 +600,7 @@ The Rao-Blackwellised particle smoother in this simple form also has the same di
 
 \subsection{Rao-Blackwellised Backward Simulation Smoothers}
 %
-In the Rao-Blackwellised case, we cannot do backward simulation just by drawing samples $u_k^{(i)}$ one step at a time from the filter results (as in Algorithm \ref{alg:bssmooth}), because the linear part of the state (and thus the likelihood of the measurements) depends on the entire history $u^{(i)}_{1:k}$. Furthermore, the marginalised state $u_k$ does not have the same simple Markov property as the full state,
+In the Rao-Blackwellised case, we cannot do backward simulation just by drawing samples $u_k^{(i)}$ one step at a time from the filter results (as in Algorithm \ref{alg:bssmooth}), because the linear part of the state (and thus the likelihood of the measurements) depends on the entire history $u^{(i)}_{0:k}$. Furthermore, the marginalised state $u_k$ does not have the same simple Markov property as the full state,
 %
 \begin{equation}
   \begin{split}
@@ -610,10 +610,7 @@ In the Rao-Blackwellised case, we cannot do backward simulation just by drawing 
   \nonumber
 \end{equation}
 %
-and thus we need to condition on the whole future instead of just on
-the next time step. Rather than just $u^{(i)}_{k}$, we must calculate weights for each filtering
-trajectory, $u^{(i)}_{1:k}$, when it is paired with the sampled
-(fixed) future state sequence, $\tilde{u}_{k+1:M}$.
+and thus we need to condition on the whole future instead of just on the next time step. Rather than just $u^{(i)}_{k}$, we must calculate weights for each filtering trajectory, $u^{(i)}_{0:k}$, when it is paired with the sampled (fixed) future state sequence, $\tilde{u}_{k+1:M}$.
 
 \subsubsection{Using Kim's Approximation}
 %
@@ -669,63 +666,64 @@ Given $S$ iterations of the above procedure resulting in samples $\tilde{u}_{1:n
 
 \subsubsection{Sampling the linear state}
 %
-Improved Rao-Blackwellised smoothing algorithms were presented by \cite{Fong+Godsill+Doucet+West:2002,Lindsten+Schon:2011}. These draw samples from the smoothing distribution of the nonlinear state, $p(u_{1:M} | y_{1:M})$, by augmenting the distribution with the linear state components and sampling linear and nonlinear states alternately.
+Improved Rao-Blackwellised smoothing algorithms were presented by \cite{Fong+Godsill+Doucet+West:2002,Lindsten+Schon:2011}. These draw samples from the smoothing distribution of the nonlinear state, $p(u_{0:M} | y_{1:M})$, by augmenting the distribution with the linear state components and sampling linear and nonlinear states alternately.
 
 By introducing the linear state sampling, we can exploit the Markov property in the same manner as the non-Rao-Blackwellised smoother. Supposing a future state trajectory, $\{ \tilde{u}_{k+1:M}, \tilde{z}_{k+1:M} \}$ has already been sampled. We would then like to sample,
 %
 \begin{equation}
 \begin{split}
-  &p(u_{1:k}, z_k\,|\,\tilde{u}_{k+1:M}, \tilde{z}_{k+1:M},y_{1:M}) \\
-  &= p(u_{1:k}, z_k\,|\,\tilde{u}_{k+1}, \tilde{z}_{k+1},y_{1:k}) \\
-  &= p(u_{1:k}\,|\,\tilde{u}_{k+1},\tilde{z}_{k+1},y_{1:k}) p(z_k\,|\, u_{1:k}, \tilde{u}_{k+1}, \tilde{z}_{k+1},y_{1:k}) \\
+  &p(u_{0:k}, z_k\,|\,\tilde{u}_{k+1:M}, \tilde{z}_{k+1:M},y_{1:M}) \\
+  &= p(u_{0:k}, z_k\,|\,\tilde{u}_{k+1}, \tilde{z}_{k+1},y_{1:k}) \\
+  &= p(u_{0:k}\,|\,\tilde{u}_{k+1},\tilde{z}_{k+1},y_{1:k}) p(z_k\,|\, u_{0:k}, \tilde{u}_{k+1}, \tilde{z}_{k+1},y_{1:k}) \\
 \end{split}
 \label{eq:linsampfact}
 \end{equation}
 
-Considering the nonlinear term first,
+Considering the nonlinear sampling first,
 %
 \begin{equation}
 \begin{split}
-  &p(u_{1:k}\,|\,\tilde{u}_{k+1},\tilde{z}_{k+1},y_{1:k}) \\
-  &= \frac{ p(\tilde{u}_{k+1}, \tilde{z}_{k+1} | u_{1:k}, y_{1:k}) p(u_{1:k}|y_{1:k}) }{ p(\tilde{u}_{k+1}, \tilde{z}_{k+1} | y_{1:k}) } \\
-  &\propto p(\tilde{z}_{k+1} | u_{1:k}, \tilde{u}_{k+1}, y_{1:k}) p(\tilde{u}_{k+1} | u_k) p(u_{1:k}|y_{1:k})     .
+  &p(u_{0:k}\,|\,\tilde{u}_{k+1},\tilde{z}_{k+1},y_{1:k}) \\
+  &= \frac{ p(\tilde{u}_{k+1}, \tilde{z}_{k+1} | u_{0:k}, y_{1:k}) p(u_{0:k}|y_{1:k}) }{ p(\tilde{u}_{k+1}, \tilde{z}_{k+1} | y_{1:k}) } \\
+  &\propto p(\tilde{z}_{k+1} | u_{0:k}, \tilde{u}_{k+1}, y_{1:k}) p(\tilde{u}_{k+1} | u_k) p(u_{0:k}|y_{1:k})     .
 \end{split}
 \end{equation}
 
-The linear density term is given by a Kalman filter prediction step using the Gaussian moments from the the $i$th filtering particle,
+The linear density term is given by a Kalman filter prediction step using the moments from the forward filtering stage,
 %
 \begin{equation}
 \begin{split}
-  p(\tilde{z}_{k+1} | u_{1:k}^{(i)}, \tilde{u}_{k+1}, y_{1:k}) = \mathrm{N}(\tilde{z}_{k+1}\,|\, m^{-(i)}_{k+1}, P^{-(i)}_{k+1}), 
+  p(\tilde{z}_{k+1} | u_{1:k}, \tilde{u}_{k+1}, y_{1:k}) = \mathrm{N}(\tilde{z}_{k+1}\,|\, m^{-}_{k+1}, P^{-}_{k+1}), 
 \end{split}
 \end{equation}
+%
 where,
 %
 \begin{equation}
 \begin{split}
- m^{-(i)}_{k+1} &= A(\tilde{u}_{k+1}) \, m^{(i)}_{k} \\
- P^{-(i)}_{k+1} &= A(\tilde{u}_{k+1}) \, P^{(i)}_{k} A(\tilde{u}_{k+1})^T + Q(\tilde{u}_{k+1})     .
+ m^{-}_{k+1} &= A(\tilde{u}_{k+1}) \, m_{k} \\
+ P^{-}_{k+1} &= A(\tilde{u}_{k+1}) \, P_{k} A(\tilde{u}_{k+1})^T + Q(\tilde{u}_{k+1})     .
 \end{split}
 \end{equation}
-
+%
 Substituting this, and the RBPF approximation for the nonlinear filtering density gives us,
 %
 \begin{equation}
 \begin{split}
-  &p(u_{1:k}\,|\,\tilde{u}_{k+1:M},z_{k+1},y_{1:M}) \\
-  &\approx \sum_i w^{(i)}_{k|k+1} \delta(x_k - x_k^{(i)}) \\
+  &p(u_{0:k}\,|\,\tilde{u}_{k+1:M},z_{k+1},y_{1:M}) \\
+  &\approx \sum_i w^{(i)}_{k|k+1} \delta(u_{0:k} - u_{0:k}^{(i)}) \\
   &w^{(i)}_{k|k+1} \propto w_k^{(i)} p(\tilde{u}_{k+1} | u_k^{(i)}) \mathrm{N}(\tilde{z}_{k+1}\,|\, m^{-(i)}_{k+1}, P^{-(i)}_{k+1})     .
 \end{split}
 \end{equation}
 
-Hence, we can sample from this distribution by selecting $u_{1:k}^{(i)}$ with probability $\propto w^{(i)}_{k|k+1}$.
+Hence, we can sample from this distribution by selecting $u_{0:k}^{(i)}$ with probability $\propto w^{(i)}_{k|k+1}$.
 
 In the second stage, we draw a sample from the linear factor in (\ref{eq:linsampfact}). This distribution may be expanded as,
 %
 \begin{equation}
 \begin{split}
-  &p(z_k\,|\, u_{1:k}, \tilde{u}_{k+1}, \tilde{z}_{k+1},y_{1:k}) \\
-  &\propto p(\tilde{z}_{k+1} | z_k, \tilde{u}_{k+1}) p(z_k\,|\, u_{1:k}, y_{1:k})
+  &p(z_k\,|\, u_{0:k}, \tilde{u}_{k+1}, \tilde{z}_{k+1},y_{1:k}) \\
+  &\propto p(\tilde{z}_{k+1} | z_k, \tilde{u}_{k+1}) p(z_k\,|\, u_{0:k}, y_{1:k})
 \end{split}
 \end{equation}
 
@@ -733,7 +731,7 @@ This will be a Gaussian and its form is akin to a Kalman filter update,
 %
 \begin{equation}
 \begin{split}
-  &p(z_k\,|\, u_{1:k}, \tilde{u}_{k+1}, \tilde{z}_{k+1},y_{1:k}) \\
+  &p(z_k\,|\, u_{0:k}, \tilde{u}_{k+1}, \tilde{z}_{k+1},y_{1:k}) \\
   &= \mathrm{N}( z_k | \tilde{m}_k , \tilde{P}_k )
 \end{split}
 \end{equation}
@@ -747,7 +745,7 @@ This will be a Gaussian and its form is akin to a Kalman filter update,
 \label{eq:linsamplinupd}
 \end{equation}
 
-Finally, we discard the historical nonlinear states, $u_{1:k-1}$, and proceed to the next step. Once complete, a joint sample has been generated from the full state smoothing distribution. To obtain a true Rao-Blackwellised estimate, we can now discard the linear state samples and run an RTS smoother for each nonlinear state trajectory.
+Finally, we discard the historical nonlinear states, $u_{0:k-1}$, and proceed to the next step. Once complete, a joint sample has been generated from the full state smoothing distribution. To obtain a true Rao-Blackwellised estimate, we can now discard the linear state samples and run an RTS smoother for each nonlinear state trajectory.
 
 The final algorithm is as follows,
 %
@@ -787,7 +785,7 @@ Note that this algorithm differs slightly from those described in \cite{Fong+God
 
 
 
-\subsubsection{New Fully RB Version}
+\subsubsection{New Fully Rao-Blackwellised Smoother}
 
 A smoother which samples the linear states is not truly Rao-Blackwellised. Rather, an algorithm is desirable which samples only the nonlinear states, with the linear part only appearing in analytical weight calculations. Such an algorithm is presented in this section.
 
@@ -1051,7 +1049,7 @@ The final algorithm is the following.
   \label{alg:rbbssmooth}
   Given the weighted set of particles $\{ w_k^{(i)}, u_{1:k}^{(i)} ~|~ i=1,\ldots,N,~k=1,\ldots,M \}$ representing the filtering results and their histories at different times, and the accompanying Gaussian moments $\{ m_k^{(i)}, P_k^{(i)} ~|~ i=1,\ldots,N,~k=1,\ldots,M \}$:
 \begin{itemize}
-\item Choose $\tilde{u}_M = u_M^{(i)}$ with probability $w^{(i)}_{M}$. Also set $m_M^b = m_M^{i)}$ and $P_M^b = P_M^{i)}$.
+\item Choose $\tilde{u}_M = u_M^{(i)}$ with probability $w^{(i)}_{M}$. Also initialise $m_M^b$ and $P_M^b$. See text.
 \item For $k=M-1,\ldots,0$:
 \begin{enumerate}
   \item Compute new weights by
@@ -1253,33 +1251,95 @@ Note that while Kim's approximation could be used to formulate a reweighting-typ
 
 \subsection{Initialization of Backward Simulation Recursion}
 %
-The recursion in Section XXX is based on the assumption that
-the normalization constant in the Equation \eqref{eq:normconst} exists
-and is finite, making the ``inversion'' of the Gaussian density
-possible.  Unfortunately, at the last step, when $k+1 = n$ it is often
-the case that such a normalization constant does not exist. This
-issue is related to the well-known normalization problem of
-two-filter smoothers. In the case of linear smoothing this
-problem can be overcome by using an information filter and defining
-the distribution at the last step as being formally singular.
-Unfortunately, although we only need to use a linear smoother, this
-approach does not solve the problem of undefined normalization
-constant in our case.
+The recursion in Section XXX is based on the assumption that the normalisation constant in the Equation \eqref{eq:normconst} exists and is finite, making the ``inversion'' of the Gaussian density possible.  Unfortunately, at the last step, when $k+1 = M$ it is often the case that such a normalisation constant does not exist. This issue is related to the well-known normalisation problem of two-filter smoothers. In the case of linear smoothing this problem can be overcome by using an information filter and defining the distribution at the last step as being formally singular. Unfortunately, although we only need to use a linear smoother, this approach does not solve the problem of undefined normalisation constant in our case.
 
-Fortunately, if the system is observable, the normalization constant
-is guaranteed to become finite at some point. One simple, approximate
-way to initialize the filter is to start by using the Kim's approximation
-based smoother until the normalization constant becomes finite (say
-$s$ steps). An alternative, exact method is to calculate
-the first term of Equation \eqref{eq:split} directly, using the
-observation density with an augmented vector of all the observations
-from $k+1$ to $n$. The form for this augmented observation density is
-given by \cite{Kitagawa:1994}. Thus, it is not necessary to invert
-the Gaussian to calculate the sampling weights until the normalization
-constant becomes finite.
+Fortunately, if the system is observable, the normalisation constant is guaranteed to become finite at some point. One simple, approximate way to initialise the filter is to start by using the Kim's approximation based smoother until the normalisation constant becomes finite (say $s$ steps). An alternative, exact method is to calculate the first term of Equation \eqref{eq:split} directly, using the observation density with an augmented vector of all the observations from $k+1$ to $M$. The form for this augmented observation density is given by \cite{Kitagawa:1994}. Thus, it is not necessary to invert the Gaussian to calculate the sampling weights until the normalisation constant becomes finite.
 
-\comment{Here it will be shown how the backward sampling should
- be initialized}
+If the observation matrix, $H(u_M)$, is full rank, then the backwards filter may initialised by taking the final observation likelihood density and ``inverting'' it,
+%
+\begin{equation}
+\begin{split}
+  p(y_M | z_M, u_M) &= \mathrm{N}( y_M | H(u_M) z_M , R(u_M) ) \\
+  &= Z_M \mathrm{N}( z_M | m_M^b , P_M^b )
+\end{split}
+\end{equation}
+%
+where,
+%
+\begin{equation}
+\begin{split}
+  m_M^b &= H(u_M)^{-1} y_M \\
+  P_M^b &= H(u_M)^{-1} R(u_M) H(u_M)^{-T} \\
+  Z_M   &= |\det H(u_M)|     .
+\end{split}
+\end{equation}
+
+If $H(u_M)$ is not invertible, then this is not possible. Instead, we must wait a few steps and then invert the joint observation density. In the following, we denote $H_k = H(u_k)$, etc. for clarity.
+
+\begin{equation}
+\begin{split}
+ p(y_{M-s:M}|z_{M-s}) &= \mathrm{N}( \mathbf{y}_{M-s:M} | L_{M-s} z_{M-s}, \Gamma_{M-s} ) \\
+ &= \sqrt{\frac{|V_{M-s}|}{|\Gamma_{M-s}|}} \mathrm{N}(x_{M-s} | \nu_{M-s}, V_{M-s} )
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+ V_{M-s} & = (L_{M-s}^T \Gamma_{M-s}^{-1} L_{M-s})^{-1} \\
+ \nu_{M-s} & = V_{M-s} L_{M-s}^T \Gamma_{M-s}^{-1} \mathbf{y}_{M-s:M}     ,
+\end{split}
+\end{equation}
+
+where $\mathbf{y}_{M-s:M}$ is a vector of concatenated observations, and $L_{M-s}$ and $\Gamma_{M-s}$ may be constructed from the system models,
+%
+\begin{equation}
+\begin{split}
+\mathbf{y}_{M-s:M} & = \begin{bmatrix}y_M \\ y_{M-1} \\ \vdots \\ y_{M-L} \end{bmatrix}
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+L_{M-s} & = \begin{bmatrix} H_M \prod_{k=M-s+1}^{M} A_k \\ H_{M-1} \prod_{k=M-s+1}^{M-1} A_k \\ \vdots \\ H_{M-s+1} \end{bmatrix}
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+ \Gamma_{M-s} & = K_{M-s} \begin{bmatrix} Q_M & 0 & \dots & 0 \\ 0 & Q_{M-1} & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & Q_{M-s+1} \end{bmatrix} K_{M-s}^T \nonumber \\
+  & + \: \begin{bmatrix} R_M & 0 & \dots & 0 \\ 0 & R_{M-1} & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & R_{M-s} \end{bmatrix} \nonumber
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+ K_{M-s} & = \begin{bmatrix} H_M & H_M A_M & \dots & H_M \prod_{k=M-s+2}^{M} A_k \\ 0 & H_{M-1} & \dots & H_{M-1} \prod_{k=M-s+2}^{M-1} A_k \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & H_{M-s+2} \\ 0 & 0 & \dots & 0 \end{bmatrix} \nonumber
+\end{split}
+\end{equation}
+
+This inversion to initialise the backwards filter may be effected once $\Gamma_{M-s}$ becomes invertible. In the meantime, backward sampling may be conducted by using the joint observation density directly for calculation of the weights,
+%
+\begin{equation}
+\begin{split}
+  &\int p(y_{k+1:M} | u_{k+1:M}, z_k) p(z_k | u_{0:k}, y_{1:k}) dz_{k+1} \\
+  &= \int \int p(y_{k+1:M} | u_{k+1:M}, z_{k+1}) p(z_{k+1} | u_{k+1}, z_{k}) dz_k p(z_k | u_{0:k}, y_{1:k}) dz_{k+1} \\
+  &= \mathrm{N}( \mathbf{y}_{k+1:M} | \xi_{k+1} , \Lambda_{k+1} )     ,
+\end{split}
+\end{equation}
+%
+where,
+%
+\begin{equation}
+\begin{split}
+  \xi_{k+1} &= L_{k+1} A_{k+1} m_k \\
+  \Lambda_{k+1} &= \Gamma_{k+1} + L_{L+1} ( A_{k+1} P_k A_{k+1}^T + Q_{k+1} ) L_{k+1}^T )     .
+\end{split}
+\end{equation}
+%
+By substituting in to weight formula, we obtain,
+%
+\begin{equation}
+\begin{split}
+  &w_{k|k+1}^{(i)} \propto w^{(i)}_k p(u_{k+1}\,|\,u_{k}^{(i)}) \mathrm{N}( \mathbf{y}_{k+1:M} | \xi_{k+1} , \Lambda_{k+1} )     .
+\end{split}
+\end{equation}
+
 
 
 \subsection{Computational Complexity}
