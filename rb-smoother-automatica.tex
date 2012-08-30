@@ -1379,26 +1379,32 @@ The sample is then accepted with probability,
 \end{split}
 \end{equation}
 %
-where $\eta_k$ is a bound on the maximum value of $\frac{ w_{k|k+1}^* }{ w_k^* }$. In the linear sampling case, this is limited by
+where $\eta_k$ is a bound on the maximum value of $\frac{ w_{k|k+1}^{(i)} }{ w_k^{(i)} }$. In the full Rao-Blackwellised case,
 %
 \begin{equation}
 \begin{split}
-  \eta_k &\ge \frac{ w_{k|k+1}^* }{ w_k^* } \\
-  & = \max_i( p(\tilde{u}_{k+1} | u_k^{(i)}) \mathrm{N}(\tilde{z}_{k+1}\,|\, m^{-(i)}_{k+1}, P^{-(i)}_{k+1}) ) \\
-  & \ge \max_{u_k}( p(\tilde{u}_{k+1} | u_k^{(i)}) ) \max_{z_{k+1}}( \mathrm{N}(\tilde{z}_{k+1}\,|\, m^{-}_{k+1}, P^{-}_{k+1}) )   .
+  & \frac{ w_{k|k+1}^{(i)} }{ w_k^{(i)} } \\
+  & = \max_i( |\det A(u_{k+1})|^{-1} p(u_{k+1} | u_{k}^{(i)}) \mathrm{N}(m_k^{(i)}\,|\,m^{-b}_{k},P_k^{(i)}+P^{-b}_{k})) \\
+  & \le |\det A(u_{k+1})|^{-1} \max_{u_k}( p(\tilde{u}_{k+1} | u_k) ) \max_{m_k,P_k}( \mathrm{N}(m_k | m^{-b}_{k},P_k+P^{-b}_{k}) ) \\
+  & = |\det A(u_{k+1})|^{-1} \max_{u_k}( p(\tilde{u}_{k+1} | u_k) ) |\det(2 \pi P^{-b}_{k})|^{-\frac{1}{2}} 
 \end{split}
 \end{equation}
 
-\comment{Oooh er! This doesn't work! With the freedom to vary $m^-$ and $P^-$, the Gaussian is unbounded, which means the only way to bound the target/proposal ratio is to exhaustively calculate the ratio for all particles, which is exactly what we're trying to avoid.}
+In the linear sampling case, we cannot use the same trick of bounding the target/proposal ratio, because given the freedom to vary $m^{-}_{k+1}$ and $P^{-}_{k+1}$, the Gaussian term, $\mathrm{N}(\tilde{z}_{k+1}\,|\, m^{-}_{k+1}, P^{-}_{k+1})$ is unbounded.
 
-In the full Rao-Blackwellised case,
+\comment{Curiously, I don't think the Douc rejection sampling method for reducing the complexity works for the linear-sampling smoothers. In the non-RB case, the rejection step requires you to know a bound on the maximum value (over the all particles) of $p(\tilde{u}_{k+1}|u_k^{(i)})$. This is fine, because you can just find the maximum of the transition density with respect to $u_k$. In the linear-sampling RB case, the quantity to be bounded is $p(\tilde{u}_{k+1}|u_k^{(i)}) \mathrm{N}(\tilde{z}_{k+1}|m^{-(i)}_{k+1}, P^{-(i)}_{k+1})$. We cannot use the same trick here, because with the freedom to vary $m^-$ and $P^-$, the Gaussian is unbounded (by setting the covariance to something singular).}
+
+%%
+%\begin{equation}
+%\begin{split}
+%  \eta_k &\ge \frac{ w_{k|k+1}^* }{ w_k^* } \\
+%  & = \max_i( p(\tilde{u}_{k+1} | u_k^{(i)}) \mathrm{N}(\tilde{z}_{k+1}\,|\, m^{-(i)}_{k+1}, P^{-(i)}_{k+1}) ) \\
+%  & \ge \max_{u_k}( p(\tilde{u}_{k+1} | u_k^{(i)}) ) \max_{z_{k+1}}( \mathrm{N}(\tilde{z}_{k+1}\,|\, m^{-}_{k+1}, P^{-}_{k+1}) )   .
+%\end{split}
+%\end{equation}
 %
-\begin{equation}
-\begin{split}
-  \eta_k &\ge \frac{ w_{k|k+1}^* }{ w_k^* } \\
-  & = \max_i( |\det A(u_{k+1})|^{-1} \mathrm{N}(m_k^{(i)}\,|\,m^{-b}_{k},P_k^{(i)}+P^{-b}_{k}) \, p(u_{k+1}\,|\,u_{k}^{(i)}) ) 
-\end{split}
-\end{equation}
+%\comment{Oooh er! This doesn't work! With the freedom to vary $m^-$ and $P^-$, the Gaussian is unbounded, which means the only way to bound the target/proposal ratio is to exhaustively calculate the ratio for all particles, which is exactly what we're trying to avoid.}
+
 
 
 Using rejection sampling reduces the computational complexity to $O(RMS)$ where $R$ is the average number of rejections before a sample is accepted over the whole procedure. Thus the operation time is reduced when $R < N$. Numerical tests show that this is not always the case. \cite{Lindsten+Schon:2011} introduce a timeout operation on the sampling to mitigate the effect of excessive numbers of rejections.
@@ -1432,9 +1438,9 @@ When using this Metropolis-Hastings sampling, the memory requirements are higher
 \comment{Including the state to latent variable equation as in the
   methods of Lindsten \& co.}
 
-\subsection{Approximate Rao-Blackwellization}
+\subsection{Approximate Rao-Blackwellisation}
 
-\comment{Approximate Rao-Blackwellization by replacing Kalman/RTS
+\comment{Approximate Rao-Blackwellisation by replacing Kalman/RTS
 with their non-linear counterparts.}
 
 
@@ -1454,7 +1460,7 @@ is smaller than in the approaches of Fong and Lindsten/Sch\"on}
 \comment{Proof that the method samples with the right distribution
 in the limit of infinite number of particles (if it does)}
 
-\comment{Analyze the approximation with finite number of particles}
+\comment{Analyse the approximation with finite number of particles}
 
 \subsection{Analysis of Kim's Approximation}
 
